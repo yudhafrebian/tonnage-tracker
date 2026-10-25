@@ -1,5 +1,6 @@
 # CI: dijalankan untuk setiap Pull Request dan setiap push ke main.
-# Render baru deploy backend kalau semua job di sini hijau (autoDeployTrigger: checksPass di render.yaml).
+# Deploy (Vercel) berjalan saat main berubah; dengan branch protection "require status checks",
+# main hanya bisa berubah lewat PR yang job-job di sini sudah hijau.
 name: CI
 
 on:

@@ -2,7 +2,8 @@ import multer from "multer";
 import type { NextFunction, Request, Response } from "express";
 import { HttpError } from "../lib/errors";
 
-const MAX_XLSX_BYTES = 5 * 1024 * 1024;
+// 4 MB: batas body request Vercel Functions 4,5 MB (termasuk overhead multipart).
+const MAX_XLSX_BYTES = 4 * 1024 * 1024;
 
 const xlsxUpload = multer({
   storage: multer.memoryStorage(),
@@ -21,7 +22,7 @@ export const uploadXlsx = (field: string) => (req: Request, res: Response, next:
     if (err instanceof multer.MulterError) {
       return next(
         err.code === "LIMIT_FILE_SIZE"
-          ? new HttpError(413, "payload_too_large", { file: ["file_too_large"] }, "File is larger than 5 MB")
+          ? new HttpError(413, "payload_too_large", { file: ["file_too_large"] }, "File is larger than 4 MB")
           : new HttpError(400, "invalid_file", { file: ["invalid_upload"] }, `Invalid upload: ${err.message}`),
       );
     }

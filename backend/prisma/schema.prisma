@@ -1,6 +1,9 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider   = "prisma-client"
+  output     = "../src/generated/prisma"
+  // Tanpa engine Rust (GA sejak Prisma 6.16): query lewat driver adapter @prisma/adapter-pg,
+  // jadi tidak ada file engine native (.node) yang bisa tertinggal saat deploy ke Vercel Functions.
+  engineType = "client"
 }
 
 datasource db {

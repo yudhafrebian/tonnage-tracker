@@ -30,3 +30,7 @@ app.use("/api/v1", api)
 
 app.use((_req, _res, next) => next(notFoundError()));
 app.use(errorHandler);
+
+// Entry Vercel: file ini (src/app.ts) dikenali otomatis dan default export-nya dijalankan sebagai
+// Vercel Function. Lokal tetap lewat src/server.ts (app.listen).
+export default app;

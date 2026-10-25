@@ -78,7 +78,7 @@
     "only_xlsx": "Hanya file .xlsx yang diperbolehkan",
     "file_required": "Silakan pilih file",
     "invalid_upload": "Upload gagal",
-    "file_too_large": "Ukuran file lebih dari 5 MB",
+    "file_too_large": "Ukuran file lebih dari 4 MB",
     "invalid_xlsx": "Bukan file .xlsx yang valid",
     "password_too_short": "Password minimal 12 karakter",
     "password_same_as_current": "Password baru harus berbeda dari yang lama",

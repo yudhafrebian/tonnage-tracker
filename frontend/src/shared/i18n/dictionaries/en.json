@@ -78,7 +78,7 @@
     "only_xlsx": "Only .xlsx files are allowed",
     "file_required": "Please choose a file",
     "invalid_upload": "Upload failed",
-    "file_too_large": "File is larger than 5 MB",
+    "file_too_large": "File is larger than 4 MB",
     "invalid_xlsx": "Not a valid .xlsx file",
     "password_too_short": "Password must be at least 12 characters",
     "password_same_as_current": "New password must differ from the current one",

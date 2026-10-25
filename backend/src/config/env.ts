@@ -11,8 +11,7 @@ const schema = z.object({
   DIRECT_URL: z.string().min(1).optional(),
   JWT_SECRET: z.string().min(32, "JWT_SECRET must be at least 32 characters long"),
   // Jumlah proxy di depan app (Express "trust proxy"), supaya req.ip = IP user asli untuk
-  // rate limit login. Production: browser -> Vercel (rewrite) -> load balancer Render -> app = 2.
-  // 0 = tidak ada proxy (lokal).
+  // rate limit login. Vercel: 1 (edge Vercel mengisi X-Forwarded-For). 0 = tanpa proxy (lokal).
   TRUST_PROXY: z.coerce.number().int().min(0).default(0),
 });
 
