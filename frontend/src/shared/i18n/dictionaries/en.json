@@ -1,0 +1,460 @@
+{
+  "meta": {
+    "title": "Tonnage Tracker"
+  },
+  "login": {
+    "title": "Login to your account",
+    "description": "Enter your username and password below",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "submitting": "Logging in...",
+    "success": "Login successful",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "logout": {
+    "title": "Are you sure you want to logout?",
+    "description": "You will be signed out of the system.",
+    "cancel": "Cancel",
+    "confirm": "Logout",
+    "confirming": "Logging out..."
+  },
+  "profile": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "theme": "Theme",
+    "themeMode": "Mode",
+    "themeColor": "Color",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeDefault": "Default",
+    "themeMacaron": "Macaron",
+    "themeMeridian": "Meridian",
+    "themeZen": "Zen",
+    "themeSakura": "Sakura",
+    "themeSystem": "System",
+    "language": "Language",
+    "logout": "Logout"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "recap": "Recap",
+    "expense": "Expenses",
+    "priceRate": "Price Rate",
+    "settings": "Settings",
+    "auditLog": "Audit Log"
+  },
+  "roles": {
+    "OWNER": "Owner",
+    "ADMIN": "Admin",
+    "VIEWER": "Viewer"
+  },
+  "access": {
+    "denied": "You don't have access to this page."
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required"
+  },
+  "errors": {
+    "network": "Cannot reach server",
+    "unknown": "Something went wrong",
+    "unauthenticated": "Please log in first",
+    "invalid_credentials": "Wrong username or password",
+    "forbidden": "You don't have permission for this action",
+    "csrf_blocked": "Request was blocked",
+    "not_found": "Data not found",
+    "conflict": "Data conflicts with existing data",
+    "validation_failed": "Some data is invalid",
+    "payload_too_large": "File is too large",
+    "invalid_file": "Invalid file",
+    "import_invalid": "File contains invalid data, nothing was imported",
+    "too_many_requests": "Too many attempts, please try again later",
+    "internal_error": "Server error, please try again",
+    "wrong_password": "Current password is wrong"
+  },
+  "fieldErrors": {
+    "only_xlsx": "Only .xlsx files are allowed",
+    "file_required": "Please choose a file",
+    "invalid_upload": "Upload failed",
+    "file_too_large": "File is larger than 5 MB",
+    "invalid_xlsx": "Not a valid .xlsx file",
+    "password_too_short": "Password must be at least 12 characters",
+    "password_same_as_current": "New password must differ from the current one",
+    "exceeds_total": "Cannot exceed the total",
+    "exceeds_max": "Total exceeds the maximum",
+    "recap_already_exists": "A recap for this date already exists",
+    "already_exists": "Already exists"
+  },
+  "excelErrors": {
+    "sheet_missing": "No sheet named \"REKAP <MONTH>\" found",
+    "sheet_wrong_month": "Sheet \"{sheet}\" is not for {month} (expected \"{expected}\")",
+    "sheet_not_found": "Sheet \"{expected}\" not found",
+    "invalid_day": "Column A must be a day number, got \"{value}\"",
+    "day_out_of_month": "Day {day} does not exist in {month}",
+    "duplicate_day": "Day {day} appears more than once",
+    "not_a_number": "{cell}: \"{value}\" is not a number",
+    "excel_error": "{cell}: Excel error {error}",
+    "negative_value": "{cell}: negative value {value}",
+    "value_too_large": "{cell}: value too large"
+  },
+  "language": {
+    "id": "Bahasa Indonesia",
+    "en": "English",
+    "zh": "中文"
+  },
+  "recap": {
+    "title": "Recap Report",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "previous": "Previous",
+    "next": "Next",
+    "addData": "Add Data",
+    "moreActions": "More actions",
+    "exportExcel": "Export Excel",
+    "exporting": "Exporting...",
+    "import": "Import",
+    "missingDates": "{count} dates have no recap yet",
+    "sections": {
+      "process": "Process",
+      "packing": "Packing",
+      "stock": "Stock"
+    },
+    "parts": {
+      "total": "Total",
+      "export": "Export",
+      "local": "Local"
+    },
+    "stockAsOf": "as of {date}",
+    "noData": "No data yet",
+    "income": "Income",
+    "expense": "Expenses",
+    "profit": "Profit",
+    "table": {
+      "date": "Date",
+      "month": "Month",
+      "total": "TOTAL",
+      "kgGroup": "{section} (kg)",
+      "recordedDays": "Days Filled",
+      "missedDays": "{count} dates missed",
+      "finance": "Finance (IDR)",
+      "pricePerKg": "Price/kg",
+      "unpriced": "No price rate for this date yet",
+      "note": "Note"
+    },
+    "actions": {
+      "add": "Add recap",
+      "menu": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "title": "Add Recap",
+      "date": "Date",
+      "note": "Note",
+      "autoTotal": "Total is calculated from Export + Local",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit Recap"
+    },
+    "created": "Recap added successfully",
+    "validation": {
+      "required": "Required",
+      "negative": "Cannot be negative",
+      "tooLarge": "Value is too large",
+      "decimals": "At most 2 decimal places",
+      "date": "Date is required",
+      "exceedsTotal": "Cannot exceed the total",
+      "exceedsMax": "Total exceeds the maximum",
+      "noteTooLong": "At most 500 characters"
+    },
+    "deleteDialog": {
+      "title": "Delete recap for {date}?",
+      "description": "Process, packing, and stock data for this date will be deleted. This cannot be undone.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "deleted": "Recap deleted",
+    "updated": "Recap updated",
+    "unpricedDates": "{count} dates have no price rate, so their income is not counted yet",
+    "importDialog": {
+      "title": "Import Recap {month}",
+      "description": "Upload an Excel file with a \"REKAP <MONTH>\" sheet (same format as the export). Export and Local columns are read; Total is calculated.",
+      "file": "Excel file (.xlsx)",
+      "downloadTemplate": "Download template",
+      "onConflict": "If a date already has a recap",
+      "skip": "Skip (keep existing data)",
+      "overwrite": "Overwrite with data from the file",
+      "preview": "Preview",
+      "previewing": "Checking...",
+      "back": "Back",
+      "save": "Save {count} dates",
+      "nothingToSave": "Nothing new or changed to save.",
+      "sheet": "Sheet: {sheet}",
+      "errorsTitle": "The file contains invalid data, nothing was imported:",
+      "row": "Row {row}",
+      "imported": "{count} dates imported",
+      "actions": {
+        "create": "New",
+        "update": "Updated",
+        "skip": "Skipped",
+        "unchanged": "Unchanged"
+      },
+      "status": "Status"
+    }
+  },
+  "expense": {
+    "title": "Expenses",
+    "addData": "Add Expense",
+    "total": "Total Expenses",
+    "entries": "{count} entries",
+    "averagePerDay": "Average per day",
+    "largest": "Largest category",
+    "byCategory": "By Category",
+    "allCategories": "All",
+    "empty": "No expenses recorded this month yet",
+    "emptyFiltered": "No expenses in this category",
+    "retry": "Try again",
+    "table": {
+      "date": "Date",
+      "category": "Category",
+      "note": "Note",
+      "createdBy": "Recorded by",
+      "amount": "Amount",
+      "total": "TOTAL"
+    },
+    "actions": {
+      "menu": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "title": "Add Expense",
+      "editTitle": "Edit Expense",
+      "date": "Date",
+      "category": "Category",
+      "categoryPlaceholder": "e.g. Fuel, Salary, Electricity",
+      "categoryHint": "Pick an existing category or type a new one",
+      "amount": "Amount",
+      "note": "Note",
+      "notePlaceholder": "Optional",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "date": "Date is required",
+      "categoryRequired": "Category is required",
+      "categoryTooLong": "At most 100 characters",
+      "amountRequired": "Amount is required",
+      "amountPositive": "Amount must be greater than 0",
+      "amountTooLarge": "Amount is too large",
+      "noteTooLong": "At most 500 characters"
+    },
+    "deleteDialog": {
+      "title": "Delete this expense?",
+      "description": "{category} · {amount} on {date} will be deleted. This cannot be undone.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "created": "Expense added",
+    "updated": "Expense updated",
+    "deleted": "Expense deleted"
+  },
+  "priceRate": {
+    "title": "Price Rate per kg",
+    "description": "The rate applies from its start date until the next rate begins. Income is calculated from the rate on each recap date.",
+    "addData": "Add Rate",
+    "current": "Current rate",
+    "since": "since {date}",
+    "perKg": "/ kg",
+    "noCurrent": "No rate in effect yet",
+    "noCurrentHint": "Income can't be calculated until a rate is added.",
+    "history": "History",
+    "present": "now",
+    "scheduled": "Scheduled",
+    "active": "Active",
+    "empty": "No price rates yet",
+    "readOnly": "Only the Owner can change price rates.",
+    "retry": "Try again",
+    "actions": {
+      "menu": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "title": "Add Price Rate",
+      "editTitle": "Edit Price Rate",
+      "effectiveFrom": "Effective from",
+      "effectiveFromHint": "Recaps from this date onward use this rate",
+      "pricePerKg": "Price per kg",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "date": "Date is required",
+      "priceRequired": "Price is required",
+      "pricePositive": "Price must be greater than 0",
+      "priceTooLarge": "Price is too large"
+    },
+    "deleteDialog": {
+      "title": "Delete rate from {date}?",
+      "description": "Recaps in this period will use the previous rate, or have no income if there is none. This cannot be undone.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "created": "Price rate added",
+    "updated": "Price rate updated",
+    "deleted": "Price rate deleted"
+  },
+  "dashboard": {
+    "title": "Summary",
+    "asOf": "Data through {date}",
+    "comparedTo": "compared with {from} – {to}",
+    "notStarted": "This month hasn't started yet",
+    "vsPrevious": "vs last month",
+    "exportShare": "Export {pct}%",
+    "stockAsOf": "Position on {date}",
+    "avgPerDay": "Avg {value} kg/day",
+    "noChange": "no comparison",
+    "daily": "Daily {section}",
+    "monthly": "Last 12 months",
+    "kgUnit": "kg",
+    "noData": "No data",
+    "clickMonth": "Click a bar to open that month",
+    "attention": "Needs attention",
+    "missingDays": "{count} dates have no recap yet",
+    "allFilled": "All dates through {date} are filled",
+    "recordedDays": "{count} days recorded",
+    "openRecap": "Open recap",
+    "retry": "Try again",
+    "metrics": {
+      "process": "Process",
+      "packing": "Packing",
+      "income": "Income",
+      "profit": "Profit"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account and how the app looks.",
+    "tabs": {
+      "profile": "Profile",
+      "appearance": "Appearance"
+    },
+    "profile": {
+      "title": "Account",
+      "description": "Your account details. Contact the Owner to change your name or role.",
+      "name": "Name",
+      "username": "Username",
+      "role": "Role"
+    },
+    "password": {
+      "title": "Change Password",
+      "description": "Use at least 12 characters. You'll stay logged in on this device.",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Change Password",
+      "submitting": "Saving...",
+      "success": "Password changed",
+      "required": "Required",
+      "tooShort": "Password must be at least 12 characters",
+      "mismatch": "Passwords do not match",
+      "sameAsCurrent": "New password must differ from the current one"
+    },
+    "appearance": {
+      "mode": "Mode",
+      "modeDescription": "Light, dark, or follow your device setting.",
+      "theme": "Color theme",
+      "themeDescription": "Saved in this browser only.",
+      "language": "Language",
+      "languageDescription": "The page reloads after changing language."
+    }
+  },
+  "auditLog": {
+    "title": "Audit Log",
+    "description": "Every change to recaps, expenses, and price rates, newest first.",
+    "filters": {
+      "entity": "Data",
+      "action": "Action",
+      "from": "From",
+      "to": "To",
+      "all": "All",
+      "reset": "Reset"
+    },
+    "entities": {
+      "DailyRecap": "Recap",
+      "Expense": "Expense",
+      "PriceRate": "Price Rate"
+    },
+    "actionLabels": {
+      "create": "Created",
+      "update": "Updated",
+      "delete": "Deleted",
+      "import": "Imported"
+    },
+    "table": {
+      "time": "Time",
+      "user": "User",
+      "action": "Action",
+      "entity": "Data",
+      "subject": "Item"
+    },
+    "field": "Field",
+    "before": "Before",
+    "after": "After",
+    "noChanges": "No values changed",
+    "showChanges": "Show changes",
+    "empty": "No activity matches these filters",
+    "pageInfo": "Page {page} of {pages} · {total} entries",
+    "previous": "Previous",
+    "next": "Next",
+    "retry": "Try again",
+    "fields": {
+      "date": "Date",
+      "note": "Note",
+      "method": "Input method",
+      "sheet": "Sheet",
+      "category": "Category",
+      "amount": "Amount",
+      "effectiveFrom": "Effective from",
+      "pricePerKg": "Price/kg",
+      "process.total": "Process total",
+      "process.export": "Process export",
+      "process.local": "Process local",
+      "packing.total": "Packing total",
+      "packing.export": "Packing export",
+      "packing.local": "Packing local",
+      "stock.total": "Stock total",
+      "stock.export": "Stock export",
+      "stock.local": "Stock local"
+    }
+  },
+  "shell": {
+    "appName": "Tonnage Tracker",
+    "appTagline": "Production recap"
+  },
+  "status": {
+    "errorTitle": "Something went wrong",
+    "errorDescription": "This page couldn't be displayed. Try again, or go back to the dashboard.",
+    "errorCode": "Error code: {digest}",
+    "retry": "Try again",
+    "backHome": "Back to Dashboard",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page you're looking for doesn't exist or has been moved.",
+    "toLogin": "Go to login"
+  },
+  "loginBrand": {
+    "title": "Daily production, one place.",
+    "description": "Record process, packing, and stock tonnage every day — income and expenses are calculated automatically.",
+    "features": [
+      "Daily recap with export & local split",
+      "Excel import and export",
+      "Income, expenses, and profit per month"
+    ]
+  }
+}

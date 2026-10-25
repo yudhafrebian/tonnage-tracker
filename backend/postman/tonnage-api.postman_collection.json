@@ -1,0 +1,581 @@
+{
+  "info": {
+    "name": "Tonnage API",
+    "description": "Semua endpoint tonnage-api.\n\nCara pakai:\n1. Import juga file environment `Tonnage API - Local`, pilih di kanan atas, isi password tiap user.\n2. Jalankan `Auth > Login admin` (atau owner/viewer). Cookie login disimpan otomatis.\n3. Jalankan request lain. Header X-Requested-With (CSRF) ditambahkan otomatis oleh script collection.\n\nVariabel collection: month, year, date, priceRateId dan expenseId (terisi otomatis setelah Create).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.request.headers.upsert({ key: \"X-Requested-With\", value: \"postman\" });"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "month",
+      "value": "2026-10"
+    },
+    {
+      "key": "year",
+      "value": "2026"
+    },
+    {
+      "key": "date",
+      "value": "2026-10-17"
+    },
+    {
+      "key": "priceRateId",
+      "value": ""
+    },
+    {
+      "key": "expenseId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/health",
+        "description": "Cek server dan koneksi database. Tidak perlu login."
+      }
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"login berhasil\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{adminUsername}}\",\n  \"password\": \"{{adminPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Login sebagai admin. Cookie tonnage_token disimpan otomatis oleh Postman dan dipakai request berikutnya.\nGanti user = jalankan Login lain (cookie tertimpa)."
+          }
+        },
+        {
+          "name": "Login owner",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"login berhasil\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{ownerUsername}}\",\n  \"password\": \"{{ownerPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Login sebagai owner. Cookie tonnage_token disimpan otomatis oleh Postman dan dipakai request berikutnya.\nGanti user = jalankan Login lain (cookie tertimpa)."
+          }
+        },
+        {
+          "name": "Login viewer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"login berhasil\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{viewerUsername}}\",\n  \"password\": \"{{viewerPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Login sebagai viewer. Cookie tonnage_token disimpan otomatis oleh Postman dan dipakai request berikutnya.\nGanti user = jalankan Login lain (cookie tertimpa)."
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/me",
+            "description": "Data user yang sedang login."
+          }
+        },
+        {
+          "name": "Change password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/change-password",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password-lama\",\n  \"newPassword\": \"password-baru-minimal-12\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Hati-hati: benar-benar mengganti password user yang sedang login."
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recaps",
+      "item": [
+        {
+          "name": "Monthly recap",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps?month={{month}}",
+            "description": "31 baris tanggal + TOTAL + missingDates. Pemasukan hanya untuk OWNER/ADMIN."
+          }
+        },
+        {
+          "name": "Yearly recap",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/yearly?year={{year}}"
+          }
+        },
+        {
+          "name": "Get by date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/{{date}}"
+          }
+        },
+        {
+          "name": "Create (total + export)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps?method=total_export",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"{{date}}\",\n  \"process\": {\n    \"total\": 7862.3,\n    \"export\": 4355.9\n  },\n  \"packing\": {\n    \"total\": 4639.9,\n    \"export\": 1722\n  },\n  \"stock\": {\n    \"total\": 33127.4,\n    \"export\": 19477.6\n  },\n  \"note\": \"Contoh dari PDF 16 Okt\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Admin mengetik Total dan Ekspor; Lokal dihitung server. Ini method default."
+          }
+        },
+        {
+          "name": "Create (total + local)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps?method=total_local",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"{{date}}\",\n  \"process\": {\n    \"total\": 7862.3,\n    \"local\": 3506.4\n  },\n  \"packing\": {\n    \"total\": 4639.9,\n    \"local\": 2917.9\n  },\n  \"stock\": {\n    \"total\": 33127.4,\n    \"local\": 13649.8\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Admin mengetik Total dan Lokal; Ekspor dihitung server."
+          }
+        },
+        {
+          "name": "Create (export + local)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps?method=export_local",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"{{date}}\",\n  \"process\": {\n    \"export\": 4355.9,\n    \"local\": 3506.4\n  },\n  \"packing\": {\n    \"export\": 1722,\n    \"local\": 2917.9\n  },\n  \"stock\": {\n    \"export\": 19477.6,\n    \"local\": 13649.8\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Admin mengetik Ekspor dan Lokal; Total dihitung server."
+          }
+        },
+        {
+          "name": "Update stock only (export + local)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/{{date}}?method=export_local",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stock\": {\n    \"export\": 19500,\n    \"local\": 13649.8\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Hanya section yang dikirim yang diubah. Section yang dikirim harus lengkap sesuai method."
+          }
+        },
+        {
+          "name": "Update process + note (total + export)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/{{date}}?method=total_export",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"process\": {\n    \"total\": 8000,\n    \"export\": 4500\n  },\n  \"note\": \"Koreksi angka proses\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/{{date}}"
+          }
+        },
+        {
+          "name": "Export Excel",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/export?month={{month}}",
+            "description": "Pakai tombol Send > Send and Download untuk menyimpan file .xlsx."
+          }
+        },
+        {
+          "name": "Import Excel (preview / dryRun)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/import?month={{month}}&dryRun=true",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "D:/Project/tonnage-tracker/backend/assets/Data Global Oktober 2026.xlsx"
+                }
+              ]
+            },
+            "description": "Pratinjau tanpa menyimpan. Kalau file tidak ditemukan, pilih ulang file di tab Body (field `file`)."
+          }
+        },
+        {
+          "name": "Import Excel (skip existing)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/import?month={{month}}&onConflict=skip",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "D:/Project/tonnage-tracker/backend/assets/Data Global Oktober 2026.xlsx"
+                }
+              ]
+            },
+            "description": "Tanggal yang sudah ada dengan angka berbeda dilewati."
+          }
+        },
+        {
+          "name": "Import Excel (overwrite)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/recaps/import?month={{month}}&onConflict=overwrite",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "D:/Project/tonnage-tracker/backend/assets/Data Global Oktober 2026.xlsx"
+                }
+              ]
+            },
+            "description": "Tanggal yang sudah ada dengan angka berbeda ditimpa (tercatat di audit log)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "item": [
+        {
+          "name": "List (month)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses?month={{month}}",
+            "description": "Daftar pengeluaran sebulan + total + rekap per kategori. Filter opsional: &category=Solar. OWNER dan ADMIN."
+          }
+        },
+        {
+          "name": "Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses/categories",
+            "description": "Kategori yang pernah dipakai (untuk autocomplete), paling sering dipakai lebih dulu."
+          }
+        },
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  pm.collectionVariables.set(\"expenseId\", pm.response.json().data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"{{date}}\",\n  \"category\": \"Solar\",\n  \"amount\": 500000,\n  \"note\": \"Solar kapal 2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Kategori teks bebas. Kalau kategori yang sama sudah ada dengan huruf besar/kecil berbeda, ejaan lama yang dipakai. id disimpan ke variabel expenseId."
+          }
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses/{{expenseId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses/{{expenseId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 450000,\n  \"note\": \"Koreksi nominal\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Kirim hanya field yang diubah: date, category, amount, note (null untuk menghapus catatan)."
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/expenses/{{expenseId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Price rates",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/price-rates",
+            "description": "OWNER dan ADMIN."
+          }
+        },
+        {
+          "name": "Create (OWNER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  pm.collectionVariables.set(\"priceRateId\", pm.response.json().data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/price-rates",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"effectiveFrom\": \"2026-11-01\",\n  \"pricePerKg\": 2700\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Tarif baru berlaku mulai effectiveFrom. id disimpan ke variabel priceRateId."
+          }
+        },
+        {
+          "name": "Update (OWNER)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/price-rates/{{priceRateId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pricePerKg\": 2750\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete (OWNER)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/price-rates/{{priceRateId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit logs",
+      "item": [
+        {
+          "name": "List (OWNER)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/audit-logs?page=1&limit=50"
+          }
+        },
+        {
+          "name": "List filtered (OWNER)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/audit-logs?entity=DailyRecap&action=update&from=2026-10-01&to=2026-10-31&page=1&limit=50",
+            "description": "Filter opsional: from, to (inklusif), userId, entity, entityId, action, page, limit."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/dashboard/summary?month={{month}}",
+            "description": "Tanpa ?month = bulan berjalan."
+          }
+        },
+        {
+          "name": "Daily trend",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/dashboard/daily?month={{month}}"
+          }
+        },
+        {
+          "name": "Monthly trend",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/dashboard/monthly?to={{month}}&months=12"
+          }
+        }
+      ]
+    }
+  ]
+}

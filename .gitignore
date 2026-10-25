@@ -1,0 +1,20 @@
+# .gitignore di frontend/ dan backend/ tetap berlaku untuk folder masing-masing.
+
+# Env & rahasia (semua folder)
+.env
+.env.*
+!.env.example
+
+# Cookie jar curl: bisa berisi token login
+backend/cookie.txt
+
+# File Excel berisi data bisnis asli (hapus baris ini kalau memang ingin ikut di repo)
+backend/assets/
+backend/postman/*.xlsx
+
+# Supabase CLI
+supabase/.temp/
+
+# OS / editor
+.DS_Store
+Thumbs.db

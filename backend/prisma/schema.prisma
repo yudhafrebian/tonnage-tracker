@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  VIEWER
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  username     String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(VIEWER)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  auditLogs AuditLog[]
+  expenses  Expense[]
+}
+
+// Satu baris per tanggal, disalin dari TOTAL di PDF laporan harian staf.
+// Ketiga nilai (total, export, local) selalu disimpan; yang tidak diketik admin dihitung server.
+model DailyRecap {
+  id   String   @id @default(cuid())
+  date DateTime @unique @db.Date
+
+  processTotal  Decimal @default(0) @db.Decimal(12, 2)
+  processExport Decimal @default(0) @db.Decimal(12, 2)
+  processLocal  Decimal @default(0) @db.Decimal(12, 2)
+
+  packingTotal  Decimal @default(0) @db.Decimal(12, 2)
+  packingExport Decimal @default(0) @db.Decimal(12, 2)
+  packingLocal  Decimal @default(0) @db.Decimal(12, 2)
+
+  // Sisa stok: posisi stok di hari itu, bukan aliran, jadi tidak dijumlah per bulan.
+  stockTotal  Decimal @default(0) @db.Decimal(12, 2)
+  stockExport Decimal @default(0) @db.Decimal(12, 2)
+  stockLocal  Decimal @default(0) @db.Decimal(12, 2)
+
+  note      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Harga per kg proses. Tarif berlaku mulai effectiveFrom sampai ada tarif berikutnya.
+model PriceRate {
+  id            String   @id @default(cuid())
+  effectiveFrom DateTime @unique @db.Date
+  pricePerKg    Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Pengeluaran per tanggal. Satu tanggal boleh punya banyak pengeluaran.
+model Expense {
+  id          String   @id @default(cuid())
+  date        DateTime @db.Date
+  category    String // teks bebas; ejaan disamakan dengan kategori yang sudah ada (lihat expense.service)
+  amount      Int // rupiah
+  note        String?
+  createdById String   @db.Uuid
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date])
+  @@index([category])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  action    String // create | update | delete | import
+  entity    String // DailyRecap | PriceRate | Expense
+  entityId  String?
+  before    Json?
+  after     Json?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([entity, entityId])
+  @@index([userId])
+}

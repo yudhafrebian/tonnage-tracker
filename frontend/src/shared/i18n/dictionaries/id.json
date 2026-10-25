@@ -1,0 +1,460 @@
+{
+  "meta": {
+    "title": "Pelacak Tonase"
+  },
+  "login": {
+    "title": "Masuk ke akun Anda",
+    "description": "Masukkan username dan password di bawah",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Masuk",
+    "submitting": "Sedang masuk...",
+    "success": "Berhasil masuk",
+    "showPassword": "Tampilkan password",
+    "hidePassword": "Sembunyikan password"
+  },
+  "logout": {
+    "title": "Yakin ingin keluar?",
+    "description": "Anda akan keluar dari sistem.",
+    "cancel": "Batal",
+    "confirm": "Keluar",
+    "confirming": "Sedang keluar..."
+  },
+  "profile": {
+    "profile": "Profil",
+    "settings": "Pengaturan",
+    "theme": "Tema",
+    "themeMode": "Mode",
+    "themeColor": "Warna",
+    "themeLight": "Terang",
+    "themeDark": "Gelap",
+    "themeDefault": "Default",
+    "themeMacaron": "Macaron",
+    "themeMeridian": "Meridian",
+    "themeZen": "Zen",
+    "themeSakura": "Sakura",
+    "themeSystem": "Sistem",
+    "language": "Bahasa",
+    "logout": "Keluar"
+  },
+  "nav": {
+    "dashboard": "Dasbor",
+    "recap": "Rekap",
+    "expense": "Pengeluaran",
+    "priceRate": "Harga",
+    "settings": "Pengaturan",
+    "auditLog": "Audit Log"
+  },
+  "roles": {
+    "OWNER": "Pemilik",
+    "ADMIN": "Admin",
+    "VIEWER": "Peninjau"
+  },
+  "access": {
+    "denied": "Anda tidak punya akses ke halaman ini."
+  },
+  "validation": {
+    "usernameRequired": "Username wajib diisi",
+    "passwordRequired": "Password wajib diisi"
+  },
+  "errors": {
+    "network": "Tidak dapat terhubung ke server",
+    "unknown": "Terjadi kesalahan",
+    "unauthenticated": "Silakan login terlebih dahulu",
+    "invalid_credentials": "Username atau password salah",
+    "forbidden": "Anda tidak punya izin untuk aksi ini",
+    "csrf_blocked": "Permintaan diblokir",
+    "not_found": "Data tidak ditemukan",
+    "conflict": "Data bentrok dengan data yang sudah ada",
+    "validation_failed": "Ada data yang tidak valid",
+    "payload_too_large": "Ukuran file terlalu besar",
+    "invalid_file": "File tidak valid",
+    "import_invalid": "File berisi data tidak valid, tidak ada yang diimpor",
+    "too_many_requests": "Terlalu banyak percobaan, coba lagi nanti",
+    "internal_error": "Server bermasalah, silakan coba lagi",
+    "wrong_password": "Password saat ini salah"
+  },
+  "fieldErrors": {
+    "only_xlsx": "Hanya file .xlsx yang diperbolehkan",
+    "file_required": "Silakan pilih file",
+    "invalid_upload": "Upload gagal",
+    "file_too_large": "Ukuran file lebih dari 5 MB",
+    "invalid_xlsx": "Bukan file .xlsx yang valid",
+    "password_too_short": "Password minimal 12 karakter",
+    "password_same_as_current": "Password baru harus berbeda dari yang lama",
+    "exceeds_total": "Tidak boleh melebihi total",
+    "exceeds_max": "Total melebihi batas maksimum",
+    "recap_already_exists": "Rekap untuk tanggal ini sudah ada",
+    "already_exists": "Sudah ada"
+  },
+  "excelErrors": {
+    "sheet_missing": "Tidak ada sheet bernama \"REKAP <BULAN>\"",
+    "sheet_wrong_month": "Sheet \"{sheet}\" bukan untuk {month} (seharusnya \"{expected}\")",
+    "sheet_not_found": "Sheet \"{expected}\" tidak ditemukan",
+    "invalid_day": "Kolom A harus berisi nomor tanggal, ditemukan \"{value}\"",
+    "day_out_of_month": "Tanggal {day} tidak ada di {month}",
+    "duplicate_day": "Tanggal {day} muncul lebih dari sekali",
+    "not_a_number": "{cell}: \"{value}\" bukan angka",
+    "excel_error": "{cell}: error Excel {error}",
+    "negative_value": "{cell}: nilai negatif {value}",
+    "value_too_large": "{cell}: nilai terlalu besar"
+  },
+  "language": {
+    "id": "Bahasa Indonesia",
+    "en": "English",
+    "zh": "中文"
+  },
+  "recap": {
+    "title": "Rekap Laporan",
+    "monthly": "Bulanan",
+    "yearly": "Tahunan",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "addData": "Tambah Data",
+    "moreActions": "Aksi lainnya",
+    "exportExcel": "Export Excel",
+    "exporting": "Mengekspor...",
+    "import": "Import",
+    "missingDates": "{count} tanggal belum ada rekap",
+    "sections": {
+      "process": "Proses",
+      "packing": "Packing",
+      "stock": "Sisa"
+    },
+    "parts": {
+      "total": "Total",
+      "export": "Ekspor",
+      "local": "Lokal"
+    },
+    "stockAsOf": "per {date}",
+    "noData": "Belum ada data",
+    "income": "Pemasukan",
+    "expense": "Pengeluaran",
+    "profit": "Laba",
+    "table": {
+      "date": "Tanggal",
+      "month": "Bulan",
+      "total": "TOTAL",
+      "kgGroup": "{section} (kg)",
+      "recordedDays": "Hari Terisi",
+      "missedDays": "{count} tanggal terlewat",
+      "finance": "Keuangan (Rp)",
+      "pricePerKg": "Harga/kg",
+      "unpriced": "Belum ada tarif harga untuk tanggal ini",
+      "note": "Catatan"
+    },
+    "actions": {
+      "add": "Tambah rekap",
+      "menu": "Aksi",
+      "edit": "Edit",
+      "delete": "Hapus"
+    },
+    "form": {
+      "title": "Tambah Rekap",
+      "date": "Tanggal",
+      "note": "Catatan",
+      "autoTotal": "Total otomatis dari Ekspor + Lokal",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan...",
+      "editTitle": "Edit Rekap"
+    },
+    "created": "Rekap berhasil ditambahkan",
+    "validation": {
+      "required": "Wajib diisi",
+      "negative": "Tidak boleh negatif",
+      "tooLarge": "Nilai terlalu besar",
+      "decimals": "Maksimal 2 angka desimal",
+      "date": "Tanggal wajib diisi",
+      "exceedsTotal": "Tidak boleh melebihi total",
+      "exceedsMax": "Total melebihi batas maksimum",
+      "noteTooLong": "Maksimal 500 karakter"
+    },
+    "deleteDialog": {
+      "title": "Hapus rekap {date}?",
+      "description": "Data proses, packing, dan sisa di tanggal ini akan dihapus. Tindakan ini tidak bisa dibatalkan.",
+      "confirm": "Hapus",
+      "deleting": "Menghapus..."
+    },
+    "deleted": "Rekap berhasil dihapus",
+    "updated": "Rekap berhasil diperbarui",
+    "unpricedDates": "{count} tanggal belum ada tarif harga, pemasukannya belum dihitung",
+    "importDialog": {
+      "title": "Import Rekap {month}",
+      "description": "Upload file Excel berisi sheet \"REKAP <BULAN>\" (format sama dengan file export). Kolom Ekspor dan Lokal yang dibaca; Total dihitung otomatis.",
+      "file": "File Excel (.xlsx)",
+      "downloadTemplate": "Unduh template",
+      "onConflict": "Jika tanggal sudah ada rekapnya",
+      "skip": "Lewati (data lama dipertahankan)",
+      "overwrite": "Timpa dengan data dari file",
+      "preview": "Pratinjau",
+      "previewing": "Memeriksa...",
+      "back": "Kembali",
+      "save": "Simpan {count} tanggal",
+      "nothingToSave": "Tidak ada data baru atau perubahan untuk disimpan.",
+      "sheet": "Sheet: {sheet}",
+      "errorsTitle": "File berisi data tidak valid, tidak ada yang diimpor:",
+      "row": "Baris {row}",
+      "imported": "{count} tanggal berhasil diimpor",
+      "actions": {
+        "create": "Baru",
+        "update": "Diperbarui",
+        "skip": "Dilewati",
+        "unchanged": "Sama"
+      },
+      "status": "Status"
+    }
+  },
+  "expense": {
+    "title": "Pengeluaran",
+    "addData": "Tambah Pengeluaran",
+    "total": "Total Pengeluaran",
+    "entries": "{count} catatan",
+    "averagePerDay": "Rata-rata per hari",
+    "largest": "Kategori terbesar",
+    "byCategory": "Per Kategori",
+    "allCategories": "Semua",
+    "empty": "Belum ada pengeluaran bulan ini",
+    "emptyFiltered": "Tidak ada pengeluaran di kategori ini",
+    "retry": "Coba lagi",
+    "table": {
+      "date": "Tanggal",
+      "category": "Kategori",
+      "note": "Catatan",
+      "createdBy": "Dicatat oleh",
+      "amount": "Jumlah",
+      "total": "TOTAL"
+    },
+    "actions": {
+      "menu": "Aksi",
+      "edit": "Edit",
+      "delete": "Hapus"
+    },
+    "form": {
+      "title": "Tambah Pengeluaran",
+      "editTitle": "Edit Pengeluaran",
+      "date": "Tanggal",
+      "category": "Kategori",
+      "categoryPlaceholder": "mis. Solar, Gaji, Listrik",
+      "categoryHint": "Pilih kategori yang sudah ada atau ketik kategori baru",
+      "amount": "Jumlah",
+      "note": "Catatan",
+      "notePlaceholder": "Opsional",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan..."
+    },
+    "validation": {
+      "date": "Tanggal wajib diisi",
+      "categoryRequired": "Kategori wajib diisi",
+      "categoryTooLong": "Maksimal 100 karakter",
+      "amountRequired": "Jumlah wajib diisi",
+      "amountPositive": "Jumlah harus lebih dari 0",
+      "amountTooLarge": "Jumlah terlalu besar",
+      "noteTooLong": "Maksimal 500 karakter"
+    },
+    "deleteDialog": {
+      "title": "Hapus pengeluaran ini?",
+      "description": "{category} · {amount} pada {date} akan dihapus. Tindakan ini tidak bisa dibatalkan.",
+      "confirm": "Hapus",
+      "deleting": "Menghapus..."
+    },
+    "created": "Pengeluaran ditambahkan",
+    "updated": "Pengeluaran diperbarui",
+    "deleted": "Pengeluaran dihapus"
+  },
+  "priceRate": {
+    "title": "Tarif per kg",
+    "description": "Tarif berlaku mulai tanggalnya sampai tarif berikutnya dimulai. Pemasukan dihitung dari tarif di tanggal rekap.",
+    "addData": "Tambah Tarif",
+    "current": "Tarif berlaku",
+    "since": "sejak {date}",
+    "perKg": "/ kg",
+    "noCurrent": "Belum ada tarif yang berlaku",
+    "noCurrentHint": "Pemasukan belum bisa dihitung sampai tarif ditambahkan.",
+    "history": "Riwayat",
+    "present": "sekarang",
+    "scheduled": "Terjadwal",
+    "active": "Berlaku",
+    "empty": "Belum ada tarif",
+    "readOnly": "Hanya Owner yang bisa mengubah tarif.",
+    "retry": "Coba lagi",
+    "actions": {
+      "menu": "Aksi",
+      "edit": "Edit",
+      "delete": "Hapus"
+    },
+    "form": {
+      "title": "Tambah Tarif",
+      "editTitle": "Edit Tarif",
+      "effectiveFrom": "Berlaku mulai",
+      "effectiveFromHint": "Rekap mulai tanggal ini memakai tarif ini",
+      "pricePerKg": "Harga per kg",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan..."
+    },
+    "validation": {
+      "date": "Tanggal wajib diisi",
+      "priceRequired": "Harga wajib diisi",
+      "pricePositive": "Harga harus lebih dari 0",
+      "priceTooLarge": "Harga terlalu besar"
+    },
+    "deleteDialog": {
+      "title": "Hapus tarif mulai {date}?",
+      "description": "Rekap di periode ini akan memakai tarif sebelumnya, atau tanpa pemasukan kalau tidak ada. Tindakan ini tidak bisa dibatalkan.",
+      "confirm": "Hapus",
+      "deleting": "Menghapus..."
+    },
+    "created": "Tarif ditambahkan",
+    "updated": "Tarif diperbarui",
+    "deleted": "Tarif dihapus"
+  },
+  "dashboard": {
+    "title": "Ringkasan",
+    "asOf": "Data s/d {date}",
+    "comparedTo": "dibandingkan dengan {from} – {to}",
+    "notStarted": "Bulan ini belum dimulai",
+    "vsPrevious": "vs bulan lalu",
+    "exportShare": "Ekspor {pct}%",
+    "stockAsOf": "Posisi {date}",
+    "avgPerDay": "Rata-rata {value} kg/hari",
+    "noChange": "tanpa pembanding",
+    "daily": "{section} Harian",
+    "monthly": "12 bulan terakhir",
+    "kgUnit": "kg",
+    "noData": "Belum ada data",
+    "clickMonth": "Klik batang untuk membuka bulan itu",
+    "attention": "Perlu perhatian",
+    "missingDays": "{count} tanggal belum ada rekap",
+    "allFilled": "Semua tanggal s/d {date} sudah terisi",
+    "recordedDays": "{count} hari tercatat",
+    "openRecap": "Buka rekap",
+    "retry": "Coba lagi",
+    "metrics": {
+      "process": "Proses",
+      "packing": "Packing",
+      "income": "Pemasukan",
+      "profit": "Laba"
+    }
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "description": "Kelola akun dan tampilan aplikasi.",
+    "tabs": {
+      "profile": "Profil",
+      "appearance": "Tampilan"
+    },
+    "profile": {
+      "title": "Akun",
+      "description": "Detail akun Anda. Hubungi Owner untuk mengubah nama atau role.",
+      "name": "Nama",
+      "username": "Username",
+      "role": "Role"
+    },
+    "password": {
+      "title": "Ganti Password",
+      "description": "Minimal 12 karakter. Anda tetap login di perangkat ini.",
+      "current": "Password saat ini",
+      "new": "Password baru",
+      "confirm": "Ulangi password baru",
+      "submit": "Ganti Password",
+      "submitting": "Menyimpan...",
+      "success": "Password berhasil diganti",
+      "required": "Wajib diisi",
+      "tooShort": "Password minimal 12 karakter",
+      "mismatch": "Password tidak sama",
+      "sameAsCurrent": "Password baru harus berbeda dari password saat ini"
+    },
+    "appearance": {
+      "mode": "Mode",
+      "modeDescription": "Terang, gelap, atau ikuti pengaturan perangkat.",
+      "theme": "Tema warna",
+      "themeDescription": "Hanya tersimpan di browser ini.",
+      "language": "Bahasa",
+      "languageDescription": "Halaman dimuat ulang setelah bahasa diganti."
+    }
+  },
+  "auditLog": {
+    "title": "Audit Log",
+    "description": "Semua perubahan rekap, pengeluaran, dan tarif, dari yang terbaru.",
+    "filters": {
+      "entity": "Data",
+      "action": "Aksi",
+      "from": "Dari",
+      "to": "Sampai",
+      "all": "Semua",
+      "reset": "Reset"
+    },
+    "entities": {
+      "DailyRecap": "Rekap",
+      "Expense": "Pengeluaran",
+      "PriceRate": "Tarif"
+    },
+    "actionLabels": {
+      "create": "Tambah",
+      "update": "Ubah",
+      "delete": "Hapus",
+      "import": "Import"
+    },
+    "table": {
+      "time": "Waktu",
+      "user": "User",
+      "action": "Aksi",
+      "entity": "Data",
+      "subject": "Item"
+    },
+    "field": "Kolom",
+    "before": "Sebelum",
+    "after": "Sesudah",
+    "noChanges": "Tidak ada nilai yang berubah",
+    "showChanges": "Lihat perubahan",
+    "empty": "Tidak ada aktivitas yang cocok dengan filter",
+    "pageInfo": "Halaman {page} dari {pages} · {total} catatan",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "retry": "Coba lagi",
+    "fields": {
+      "date": "Tanggal",
+      "note": "Catatan",
+      "method": "Cara input",
+      "sheet": "Sheet",
+      "category": "Kategori",
+      "amount": "Jumlah",
+      "effectiveFrom": "Berlaku mulai",
+      "pricePerKg": "Harga/kg",
+      "process.total": "Proses total",
+      "process.export": "Proses ekspor",
+      "process.local": "Proses lokal",
+      "packing.total": "Packing total",
+      "packing.export": "Packing ekspor",
+      "packing.local": "Packing lokal",
+      "stock.total": "Sisa total",
+      "stock.export": "Sisa ekspor",
+      "stock.local": "Sisa lokal"
+    }
+  },
+  "shell": {
+    "appName": "Tonnage Tracker",
+    "appTagline": "Rekap produksi"
+  },
+  "status": {
+    "errorTitle": "Terjadi kesalahan",
+    "errorDescription": "Halaman ini tidak bisa ditampilkan. Coba lagi, atau kembali ke dasbor.",
+    "errorCode": "Kode error: {digest}",
+    "retry": "Coba lagi",
+    "backHome": "Kembali ke Dasbor",
+    "notFoundTitle": "Halaman tidak ditemukan",
+    "notFoundDescription": "Halaman yang Anda cari tidak ada atau sudah dipindahkan.",
+    "toLogin": "Ke halaman login"
+  },
+  "loginBrand": {
+    "title": "Produksi harian, dalam satu tempat.",
+    "description": "Catat tonase proses, packing, dan sisa setiap hari — pemasukan dan pengeluaran dihitung otomatis.",
+    "features": [
+      "Rekap harian dengan rincian ekspor & lokal",
+      "Import dan export Excel",
+      "Pemasukan, pengeluaran, dan laba per bulan"
+    ]
+  }
+}

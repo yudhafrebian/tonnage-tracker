@@ -1,0 +1,55 @@
+# CI: dijalankan untuk setiap Pull Request dan setiap push ke main.
+# Render baru deploy backend kalau semua job di sini hijau (autoDeployTrigger: checksPass di render.yaml).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Push baru ke branch yang sama membatalkan run lama yang masih berjalan.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (typecheck, test, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      # Test tidak menyentuh database (Prisma di-mock), tapi `prisma generate` saat npm ci
+      # dan validasi env butuh nilainya. Ini nilai palsu, bukan rahasia.
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+      JWT_SECRET: ci-only-not-a-real-secret-0123456789abcdef
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  frontend:
+    name: Frontend (lint, typecheck, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build

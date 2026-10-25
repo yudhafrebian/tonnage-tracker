@@ -1,0 +1,460 @@
+{
+  "meta": {
+    "title": "吨位追踪"
+  },
+  "login": {
+    "title": "登录您的账户",
+    "description": "请在下方输入用户名和密码",
+    "username": "用户名",
+    "password": "密码",
+    "submit": "登录",
+    "submitting": "正在登录...",
+    "success": "登录成功",
+    "showPassword": "显示密码",
+    "hidePassword": "隐藏密码"
+  },
+  "logout": {
+    "title": "确定要退出登录吗？",
+    "description": "您将退出系统。",
+    "cancel": "取消",
+    "confirm": "退出登录",
+    "confirming": "正在退出..."
+  },
+  "profile": {
+    "profile": "个人资料",
+    "settings": "设置",
+    "theme": "主题",
+    "themeMode": "模式",
+    "themeColor": "颜色",
+    "themeLight": "浅色",
+    "themeDark": "深色",
+    "themeDefault": "默认",
+    "themeMacaron": "马卡龙",
+    "themeMeridian": "Meridian",
+    "themeZen": "Zen",
+    "themeSakura": "樱花",
+    "themeSystem": "跟随系统",
+    "language": "语言",
+    "logout": "退出登录"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "recap": "汇总",
+    "expense": "支出",
+    "priceRate": "Price",
+    "settings": "设置",
+    "auditLog": "审计日志"
+  },
+  "roles": {
+    "OWNER": "所有者",
+    "ADMIN": "管理员",
+    "VIEWER": "查看者"
+  },
+  "access": {
+    "denied": "您无权访问此页面。"
+  },
+  "validation": {
+    "usernameRequired": "请输入用户名",
+    "passwordRequired": "请输入密码"
+  },
+  "errors": {
+    "network": "无法连接到服务器",
+    "unknown": "出现错误",
+    "unauthenticated": "请先登录",
+    "invalid_credentials": "用户名或密码错误",
+    "forbidden": "您无权执行此操作",
+    "csrf_blocked": "请求被拦截",
+    "not_found": "未找到数据",
+    "conflict": "数据与现有数据冲突",
+    "validation_failed": "部分数据无效",
+    "payload_too_large": "文件过大",
+    "invalid_file": "文件无效",
+    "import_invalid": "文件包含无效数据，未导入任何内容",
+    "too_many_requests": "尝试次数过多，请稍后再试",
+    "internal_error": "服务器错误，请重试",
+    "wrong_password": "当前密码错误"
+  },
+  "fieldErrors": {
+    "only_xlsx": "仅允许 .xlsx 文件",
+    "file_required": "请选择文件",
+    "invalid_upload": "上传失败",
+    "file_too_large": "文件大于 5 MB",
+    "invalid_xlsx": "不是有效的 .xlsx 文件",
+    "password_too_short": "密码至少需要 12 个字符",
+    "password_same_as_current": "新密码不能与当前密码相同",
+    "exceeds_total": "不能超过总量",
+    "exceeds_max": "总量超过上限",
+    "recap_already_exists": "该日期的汇总已存在",
+    "already_exists": "已存在"
+  },
+  "excelErrors": {
+    "sheet_missing": "未找到名为 \"REKAP <月份>\" 的工作表",
+    "sheet_wrong_month": "工作表 \"{sheet}\" 不属于 {month}（应为 \"{expected}\"）",
+    "sheet_not_found": "未找到工作表 \"{expected}\"",
+    "invalid_day": "A 列必须是日期数字，实际为 \"{value}\"",
+    "day_out_of_month": "{month} 中不存在第 {day} 天",
+    "duplicate_day": "第 {day} 天出现了多次",
+    "not_a_number": "{cell}：\"{value}\" 不是数字",
+    "excel_error": "{cell}：Excel 错误 {error}",
+    "negative_value": "{cell}：负值 {value}",
+    "value_too_large": "{cell}：数值过大"
+  },
+  "language": {
+    "id": "Bahasa Indonesia",
+    "en": "English",
+    "zh": "中文"
+  },
+  "recap": {
+    "title": "汇总报表",
+    "monthly": "按月",
+    "yearly": "按年",
+    "previous": "上一个",
+    "next": "下一个",
+    "addData": "添加数据",
+    "moreActions": "更多操作",
+    "exportExcel": "导出 Excel",
+    "exporting": "正在导出...",
+    "import": "导入",
+    "missingDates": "{count} 个日期尚无汇总",
+    "sections": {
+      "process": "加工",
+      "packing": "包装",
+      "stock": "库存"
+    },
+    "parts": {
+      "total": "总计",
+      "export": "出口",
+      "local": "本地"
+    },
+    "stockAsOf": "截至 {date}",
+    "noData": "暂无数据",
+    "income": "收入",
+    "expense": "支出",
+    "profit": "利润",
+    "table": {
+      "date": "日期",
+      "month": "月份",
+      "total": "合计",
+      "kgGroup": "{section}（公斤）",
+      "recordedDays": "已填天数",
+      "missedDays": "遗漏 {count} 个日期",
+      "finance": "财务（印尼盾）",
+      "pricePerKg": "单价/公斤",
+      "unpriced": "该日期尚无价格",
+      "note": "备注"
+    },
+    "actions": {
+      "add": "添加汇总",
+      "menu": "操作",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "form": {
+      "title": "添加汇总",
+      "date": "日期",
+      "note": "备注",
+      "autoTotal": "总计由出口 + 本地自动计算",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "正在保存...",
+      "editTitle": "编辑汇总"
+    },
+    "created": "汇总已添加",
+    "validation": {
+      "required": "必填",
+      "negative": "不能为负数",
+      "tooLarge": "数值过大",
+      "decimals": "最多 2 位小数",
+      "date": "请填写日期",
+      "exceedsTotal": "不能超过总计",
+      "exceedsMax": "总计超过上限",
+      "noteTooLong": "最多 500 个字符"
+    },
+    "deleteDialog": {
+      "title": "删除 {date} 的汇总？",
+      "description": "该日期的加工、包装和库存数据将被删除。此操作无法撤销。",
+      "confirm": "删除",
+      "deleting": "正在删除..."
+    },
+    "deleted": "汇总已删除",
+    "updated": "汇总已更新",
+    "unpricedDates": "{count} 个日期尚无价格，其收入尚未计算",
+    "importDialog": {
+      "title": "导入汇总 {month}",
+      "description": "上传包含 \"REKAP <月份>\" 工作表的 Excel 文件（格式与导出文件相同）。读取出口和本地列，总计自动计算。",
+      "file": "Excel 文件 (.xlsx)",
+      "downloadTemplate": "下载模板",
+      "onConflict": "如果该日期已有汇总",
+      "skip": "跳过（保留现有数据）",
+      "overwrite": "用文件中的数据覆盖",
+      "preview": "预览",
+      "previewing": "正在检查...",
+      "back": "返回",
+      "save": "保存 {count} 个日期",
+      "nothingToSave": "没有新的或已更改的数据需要保存。",
+      "sheet": "工作表：{sheet}",
+      "errorsTitle": "文件包含无效数据，未导入任何内容：",
+      "row": "第 {row} 行",
+      "imported": "已导入 {count} 个日期",
+      "actions": {
+        "create": "新增",
+        "update": "更新",
+        "skip": "跳过",
+        "unchanged": "未变"
+      },
+      "status": "状态"
+    }
+  },
+  "expense": {
+    "title": "支出",
+    "addData": "添加支出",
+    "total": "支出合计",
+    "entries": "{count} 条记录",
+    "averagePerDay": "日均",
+    "largest": "最大类别",
+    "byCategory": "按类别",
+    "allCategories": "全部",
+    "empty": "本月尚无支出记录",
+    "emptyFiltered": "该类别没有支出",
+    "retry": "重试",
+    "table": {
+      "date": "日期",
+      "category": "类别",
+      "note": "备注",
+      "createdBy": "记录人",
+      "amount": "金额",
+      "total": "合计"
+    },
+    "actions": {
+      "menu": "操作",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "form": {
+      "title": "添加支出",
+      "editTitle": "编辑支出",
+      "date": "日期",
+      "category": "类别",
+      "categoryPlaceholder": "例如：柴油、工资、电费",
+      "categoryHint": "选择已有类别或输入新类别",
+      "amount": "金额",
+      "note": "备注",
+      "notePlaceholder": "可选",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中..."
+    },
+    "validation": {
+      "date": "请填写日期",
+      "categoryRequired": "请填写类别",
+      "categoryTooLong": "最多 100 个字符",
+      "amountRequired": "请填写金额",
+      "amountPositive": "金额必须大于 0",
+      "amountTooLarge": "金额过大",
+      "noteTooLong": "最多 500 个字符"
+    },
+    "deleteDialog": {
+      "title": "删除这条支出？",
+      "description": "{date} 的 {category} · {amount} 将被删除，且无法撤销。",
+      "confirm": "删除",
+      "deleting": "删除中..."
+    },
+    "created": "支出已添加",
+    "updated": "支出已更新",
+    "deleted": "支出已删除"
+  },
+  "priceRate": {
+    "title": "每公斤价格",
+    "description": "价格自生效日起适用，直到下一个价格开始。收入按每个记录日期的价格计算。",
+    "addData": "添加价格",
+    "current": "当前价格",
+    "since": "自 {date} 起",
+    "perKg": "/ 公斤",
+    "noCurrent": "尚无生效的价格",
+    "noCurrentHint": "添加价格后才能计算收入。",
+    "history": "历史",
+    "present": "至今",
+    "scheduled": "已排期",
+    "active": "生效中",
+    "empty": "尚无价格",
+    "readOnly": "只有所有者可以修改价格。",
+    "retry": "重试",
+    "actions": {
+      "menu": "操作",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "form": {
+      "title": "添加价格",
+      "editTitle": "编辑价格",
+      "effectiveFrom": "生效日期",
+      "effectiveFromHint": "自该日期起的记录使用此价格",
+      "pricePerKg": "每公斤价格",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中..."
+    },
+    "validation": {
+      "date": "请填写日期",
+      "priceRequired": "请填写价格",
+      "pricePositive": "价格必须大于 0",
+      "priceTooLarge": "价格过大"
+    },
+    "deleteDialog": {
+      "title": "删除自 {date} 起的价格？",
+      "description": "该期间的记录将使用之前的价格；若没有则不计收入。此操作无法撤销。",
+      "confirm": "删除",
+      "deleting": "删除中..."
+    },
+    "created": "价格已添加",
+    "updated": "价格已更新",
+    "deleted": "价格已删除"
+  },
+  "dashboard": {
+    "title": "概览",
+    "asOf": "数据截至 {date}",
+    "comparedTo": "对比 {from} – {to}",
+    "notStarted": "本月尚未开始",
+    "vsPrevious": "较上月",
+    "exportShare": "出口 {pct}%",
+    "stockAsOf": "{date} 的库存",
+    "avgPerDay": "日均 {value} 公斤",
+    "noChange": "无对比数据",
+    "daily": "每日{section}",
+    "monthly": "近 12 个月",
+    "kgUnit": "公斤",
+    "noData": "暂无数据",
+    "clickMonth": "点击柱形打开该月",
+    "attention": "需要注意",
+    "missingDays": "{count} 个日期尚无记录",
+    "allFilled": "截至 {date} 的日期均已填写",
+    "recordedDays": "已记录 {count} 天",
+    "openRecap": "打开记录",
+    "retry": "重试",
+    "metrics": {
+      "process": "加工",
+      "packing": "包装",
+      "income": "收入",
+      "profit": "利润"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "description": "管理您的账户和应用外观。",
+    "tabs": {
+      "profile": "个人资料",
+      "appearance": "外观"
+    },
+    "profile": {
+      "title": "账户",
+      "description": "您的账户信息。如需修改姓名或角色，请联系所有者。",
+      "name": "姓名",
+      "username": "用户名",
+      "role": "角色"
+    },
+    "password": {
+      "title": "修改密码",
+      "description": "至少 12 个字符。您在此设备上将保持登录。",
+      "current": "当前密码",
+      "new": "新密码",
+      "confirm": "确认新密码",
+      "submit": "修改密码",
+      "submitting": "保存中...",
+      "success": "密码已修改",
+      "required": "必填",
+      "tooShort": "密码至少 12 个字符",
+      "mismatch": "两次输入的密码不一致",
+      "sameAsCurrent": "新密码不能与当前密码相同"
+    },
+    "appearance": {
+      "mode": "模式",
+      "modeDescription": "浅色、深色或跟随设备设置。",
+      "theme": "颜色主题",
+      "themeDescription": "仅保存在此浏览器中。",
+      "language": "语言",
+      "languageDescription": "切换语言后页面将重新加载。"
+    }
+  },
+  "auditLog": {
+    "title": "审计日志",
+    "description": "记录、支出和价格的所有更改，按时间倒序。",
+    "filters": {
+      "entity": "数据",
+      "action": "操作",
+      "from": "从",
+      "to": "至",
+      "all": "全部",
+      "reset": "重置"
+    },
+    "entities": {
+      "DailyRecap": "记录",
+      "Expense": "支出",
+      "PriceRate": "价格"
+    },
+    "actionLabels": {
+      "create": "新增",
+      "update": "修改",
+      "delete": "删除",
+      "import": "导入"
+    },
+    "table": {
+      "time": "时间",
+      "user": "用户",
+      "action": "操作",
+      "entity": "数据",
+      "subject": "条目"
+    },
+    "field": "字段",
+    "before": "之前",
+    "after": "之后",
+    "noChanges": "没有值发生变化",
+    "showChanges": "查看更改",
+    "empty": "没有符合筛选条件的活动",
+    "pageInfo": "第 {page} / {pages} 页 · 共 {total} 条",
+    "previous": "上一页",
+    "next": "下一页",
+    "retry": "重试",
+    "fields": {
+      "date": "日期",
+      "note": "备注",
+      "method": "输入方式",
+      "sheet": "工作表",
+      "category": "类别",
+      "amount": "金额",
+      "effectiveFrom": "生效日期",
+      "pricePerKg": "每公斤价格",
+      "process.total": "加工合计",
+      "process.export": "加工出口",
+      "process.local": "加工本地",
+      "packing.total": "包装合计",
+      "packing.export": "包装出口",
+      "packing.local": "包装本地",
+      "stock.total": "库存合计",
+      "stock.export": "库存出口",
+      "stock.local": "库存本地"
+    }
+  },
+  "shell": {
+    "appName": "Tonnage Tracker",
+    "appTagline": "生产记录"
+  },
+  "status": {
+    "errorTitle": "出错了",
+    "errorDescription": "无法显示此页面。请重试，或返回概览。",
+    "errorCode": "错误代码：{digest}",
+    "retry": "重试",
+    "backHome": "返回概览",
+    "notFoundTitle": "页面不存在",
+    "notFoundDescription": "您要查找的页面不存在或已被移动。",
+    "toLogin": "前往登录"
+  },
+  "loginBrand": {
+    "title": "每日生产，一处掌握。",
+    "description": "每天记录加工、包装和库存吨位——收入和支出自动计算。",
+    "features": [
+      "每日记录，区分出口与本地",
+      "Excel 导入与导出",
+      "每月收入、支出与利润"
+    ]
+  }
+}
