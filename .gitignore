@@ -8,8 +8,8 @@
 # Cookie jar curl: bisa berisi token login
 backend/cookie.txt
 
-# File Excel berisi data bisnis asli (hapus baris ini kalau memang ingin ikut di repo)
-backend/assets/
+# Hasil export Excel (data bisnis asli, tidak dipakai test).
+# backend/assets/ sengaja TIDAK di-ignore: test import Excel membaca file di sana.
 backend/postman/*.xlsx
 
 # Supabase CLI
