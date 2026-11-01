@@ -11,7 +11,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// SUPER_ADMIN: hak akses sama dengan OWNER, tetapi tidak ditampilkan di daftar akun
+// (fitur manajemen user nanti). Lihat HIDDEN_ROLES di src/lib/permissions.ts.
 enum Role {
+  SUPER_ADMIN
   OWNER
   ADMIN
   VIEWER

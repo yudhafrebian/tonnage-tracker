@@ -1,9 +1,9 @@
-import { PERMISSIONS, can, type Permission, type Role } from "../src/lib/permissions";
+import { HIDDEN_ROLES, PERMISSIONS, can, type Permission, type Role } from "../src/lib/permissions";
 
-const ROLES: Role[] = ["OWNER", "ADMIN", "VIEWER"];
-const ALL: Role[] = ["OWNER", "ADMIN", "VIEWER"];
-const STAFF: Role[] = ["OWNER", "ADMIN"];
-const OWNER: Role[] = ["OWNER"];
+const ROLES: Role[] = ["SUPER_ADMIN", "OWNER", "ADMIN", "VIEWER"];
+const ALL: Role[] = ["SUPER_ADMIN", "OWNER", "ADMIN", "VIEWER"];
+const STAFF: Role[] = ["SUPER_ADMIN", "OWNER", "ADMIN"];
+const OWNER: Role[] = ["SUPER_ADMIN", "OWNER"];
 
 const EXPECTED: Record<Permission, Role[]> = {
   "recap:read": ALL,
@@ -33,6 +33,16 @@ describe("matriks izin", () => {
     for (const p of Object.keys(PERMISSIONS) as Permission[]) {
       expect(can("VIEWER", p)).toBe(p === "recap:read" || p === "journal:read");
     }
+  });
+
+  it("Super admin punya hak yang sama persis dengan owner", () => {
+    for (const p of Object.keys(PERMISSIONS) as Permission[]) {
+      expect(can("SUPER_ADMIN", p)).toBe(can("OWNER", p));
+    }
+  });
+
+  it("Super admin disembunyikan dari daftar akun, role lain tidak", () => {
+    expect(HIDDEN_ROLES).toEqual(["SUPER_ADMIN"]);
   });
 
   it("Admin tidak bisa mengelola tarif atau melihat audit log", () => {

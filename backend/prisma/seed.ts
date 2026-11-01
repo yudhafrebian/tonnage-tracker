@@ -2,9 +2,10 @@ import { hashPassword } from "../src/lib/hash-password";
 import { existsSync, readFileSync } from "fs";
 import path from "path";
 import { prisma } from "../src/config/prisma";
+import type { Role } from "../src/lib/permissions";
 import { importMonth } from "../src/modules/recap/recap.service";
 
-type SeedUser = { username: string; name: string; role: "OWNER" | "ADMIN" | "VIEWER"; password?: string };
+type SeedUser = { username: string; name: string; role: Role; password?: string };
 
 async function main() {
   const adminPassword = process.env.SEED_ADMIN_PASSWORD;
@@ -17,6 +18,13 @@ async function main() {
     // Opsional: hanya dibuat kalau passwordnya diisi di .env
     { username: "viewer", name: "Viewer", role: "VIEWER", password: process.env.SEED_VIEWER_PASSWORD },
     { username: "owner", name: "Owner", role: "OWNER", password: process.env.SEED_OWNER_PASSWORD },
+    // Akses setara Owner, tidak tampil di daftar akun (HIDDEN_ROLES).
+    {
+      username: process.env.SEED_SUPERADMIN_USERNAME || "superadmin",
+      name: "Super Admin",
+      role: "SUPER_ADMIN",
+      password: process.env.SEED_SUPERADMIN_PASSWORD,
+    },
   ];
 
   for (const u of users) {

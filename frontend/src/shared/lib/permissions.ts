@@ -1,7 +1,11 @@
-export type Role = "OWNER" | "ADMIN" | "VIEWER";
-const ALL: readonly Role[] = ["OWNER", "ADMIN", "VIEWER"];
-const STAFF: readonly Role[] = ["OWNER", "ADMIN"];
-const OWNER: readonly Role[] = ["OWNER"];
+export type Role = "SUPER_ADMIN" | "OWNER" | "ADMIN" | "VIEWER";
+// SUPER_ADMIN ikut di setiap kelompok yang memuat OWNER: hak aksesnya sama kuat (sama dengan backend).
+const ALL: readonly Role[] = ["SUPER_ADMIN", "OWNER", "ADMIN", "VIEWER"];
+const STAFF: readonly Role[] = ["SUPER_ADMIN", "OWNER", "ADMIN"];
+const OWNER: readonly Role[] = ["SUPER_ADMIN", "OWNER"];
+
+// Role yang tidak boleh muncul di daftar akun / manajemen user. Pakai sebagai filter saat fitur itu dibuat.
+export const HIDDEN_ROLES: readonly Role[] = ["SUPER_ADMIN"];
 
 export const PERMISSIONS = {
   "recap:read": ALL,

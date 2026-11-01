@@ -5,13 +5,12 @@ import type { Formatter } from "@/shared/i18n/use-formatter";
 import { format as fill } from "@/shared/i18n/format";
 import type { DataTableFeatures } from "./data-table-features";
 
-const PARTS: (keyof Section)[] = ["total", "export", "local"];
-// Per pasar: Ekspor & Lokal dulu (seperti sheet REKAP Excel), Total di belakang.
-const MARKET_PARTS: (keyof Section)[] = ["export", "local", "total"];
+// Urutan Ekspor, Lokal, Total di kedua susunan (Total = jumlah keduanya, jadi di belakang).
+const PARTS: (keyof Section)[] = ["export", "local", "total"];
 
 // Kolom kg dalam grup. Dipakai tabel harian (baris = RecapDay) dan tahunan (baris = MonthSummary);
 // `getSection` menentukan cara mengambil section dari satu baris.
-//   section: "Proses (kg)" -> Total | Ekspor | Lokal, lalu Packing, lalu Sisa.
+//   section: "Proses (kg)" -> Ekspor | Lokal | Total, lalu Packing, lalu Sisa.
 //   market:  "Ekspor (kg)" -> Proses | Packing | Sisa, lalu Lokal, lalu Total (susunan Excel admin).
 // ID kolom selalu `${section}.${part}` di kedua susunan, jadi hiddenColumns & footer tetap berlaku.
 export const makeKgGroups = <TData extends RowData>(
@@ -35,7 +34,7 @@ export const makeKgGroups = <TData extends RowData>(
     });
 
   if (grouping === "market") {
-    return MARKET_PARTS.map((part) =>
+    return PARTS.map((part) =>
       columnHelper.group({
         id: `market.${part}`,
         header: fill(t.table.kgGroup, { section: t.parts[part] }),

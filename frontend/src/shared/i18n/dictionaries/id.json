@@ -48,6 +48,7 @@
     "discrepancies": "Catatan Selisih"
   },
   "roles": {
+    "SUPER_ADMIN": "Super Admin",
     "OWNER": "Pemilik",
     "ADMIN": "Admin",
     "VIEWER": "Peninjau"
