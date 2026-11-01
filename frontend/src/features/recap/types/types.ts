@@ -91,6 +91,10 @@ export type DialogType = 'create' | 'edit' | 'delete' | 'import' | null
 
 export type RecapView = "monthly" | "yearly";
 
+// Susunan kolom kg: per bagian (Proses: Total/Ekspor/Lokal, ...) atau per pasar
+// (Ekspor: Proses/Packing/Sisa, Lokal: ..., Total: ...) seperti sheet REKAP Excel admin.
+export type RecapGrouping = "section" | "market";
+
 // Dialog yang sedang terbuka + tanggal terkait (dari kolom Aksi di tabel).
 export type DialogState = { type: DialogType; date?: string };
 

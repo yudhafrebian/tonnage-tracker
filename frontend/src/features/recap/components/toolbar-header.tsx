@@ -12,13 +12,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useI18n } from "@/shared/i18n/i18n-provider";
 import { formatMonth } from "../lib/month";
-import { DialogType, RecapView } from "../types/types";
+import { DialogType, RecapGrouping, RecapView } from "../types/types";
 import { useExportRecapMutation } from "../api/recap.query";
 import { usePermission } from "@/features/auth";
 
 interface ToolbarHeaderProps {
   view: RecapView;
   onViewChange: (view: RecapView) => void;
+  grouping: RecapGrouping;
+  onGroupingChange: (grouping: RecapGrouping) => void;
   month: string; // "2026-10"; di tab Tahunan yang dipakai hanya tahunnya
   onMonthChange: (month: string) => void;
   // State dialog dipegang page, karena kolom Aksi di tabel juga membuka dialog yang sama.
@@ -45,16 +47,31 @@ const ToolbarHeader: React.FC<ToolbarHeaderProps> = (props) => {
           <h1 className="text-2xl font-bold md:text-3xl">
             {t.title} {periodLabel}
           </h1>
-          {/* value + onValueChange (bukan defaultValue): state tab dipegang page. */}
-          <Tabs
-            value={props.view}
-            onValueChange={(value) => props.onViewChange(value as RecapView)}
-          >
-            <TabsList>
-              <TabsTrigger value="monthly">{t.monthly}</TabsTrigger>
-              <TabsTrigger value="yearly">{t.yearly}</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {/* value + onValueChange (bukan defaultValue): state tab dipegang page. */}
+            <Tabs
+              value={props.view}
+              onValueChange={(value) => props.onViewChange(value as RecapView)}
+            >
+              <TabsList>
+                <TabsTrigger value="monthly">{t.monthly}</TabsTrigger>
+                <TabsTrigger value="yearly">{t.yearly}</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            {/* Per Pasar = susunan sheet REKAP Excel admin: blok Ekspor, lalu Lokal. */}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>{t.grouping.label}</span>
+              <Tabs
+                value={props.grouping}
+                onValueChange={(value) => props.onGroupingChange(value as RecapGrouping)}
+              >
+                <TabsList>
+                  <TabsTrigger value="section">{t.grouping.section}</TabsTrigger>
+                  <TabsTrigger value="market">{t.grouping.market}</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-2 sm:flex-col sm:items-end sm:justify-start">

@@ -43,7 +43,9 @@
     "expense": "Pengeluaran",
     "priceRate": "Harga",
     "settings": "Pengaturan",
-    "auditLog": "Audit Log"
+    "auditLog": "Audit Log",
+    "journal": "Jurnal Harian",
+    "discrepancies": "Catatan Selisih"
   },
   "roles": {
     "OWNER": "Pemilik",
@@ -72,7 +74,9 @@
     "import_invalid": "File berisi data tidak valid, tidak ada yang diimpor",
     "too_many_requests": "Terlalu banyak percobaan, coba lagi nanti",
     "internal_error": "Server bermasalah, silakan coba lagi",
-    "wrong_password": "Password saat ini salah"
+    "wrong_password": "Password saat ini salah",
+    "stock_exists": "Tanggal ini sudah punya data sisa stok",
+    "no_previous_stock": "Belum ada sisa stok sebelumnya untuk disalin"
   },
   "fieldErrors": {
     "only_xlsx": "Hanya file .xlsx yang diperbolehkan",
@@ -97,7 +101,11 @@
     "not_a_number": "{cell}: \"{value}\" bukan angka",
     "excel_error": "{cell}: error Excel {error}",
     "negative_value": "{cell}: nilai negatif {value}",
-    "value_too_large": "{cell}: nilai terlalu besar"
+    "value_too_large": "{cell}: nilai terlalu besar",
+    "no_day_sheets": "Tidak ada sheet harian (nama seperti \"6 OKT 26\")",
+    "duplicate_date": "Tanggal {date} muncul di lebih dari satu sheet",
+    "block_missing": "Tabel \"{block}\" tidak ditemukan",
+    "kg_missing": "{cell}: KG kosong"
   },
   "language": {
     "id": "Bahasa Indonesia",
@@ -203,6 +211,11 @@
         "unchanged": "Sama"
       },
       "status": "Status"
+    },
+    "grouping": {
+      "label": "Susunan",
+      "section": "Per Bagian",
+      "market": "Per Pasar"
     }
   },
   "expense": {
@@ -389,7 +402,10 @@
     "entities": {
       "DailyRecap": "Rekap",
       "Expense": "Pengeluaran",
-      "PriceRate": "Tarif"
+      "PriceRate": "Tarif",
+      "Journal": "Jurnal Harian",
+      "JournalEntry": "Baris Jurnal",
+      "StockDiscrepancy": "Selisih Stok"
     },
     "actionLabels": {
       "create": "Tambah",
@@ -431,7 +447,26 @@
       "packing.local": "Packing lokal",
       "stock.total": "Sisa total",
       "stock.export": "Sisa ekspor",
-      "stock.local": "Sisa lokal"
+      "stock.local": "Sisa lokal",
+      "from": "Dari",
+      "to": "Sampai",
+      "days": "Jumlah hari",
+      "rows": "Baris disimpan",
+      "replacedRows": "Baris diganti",
+      "sheets": "Sheet",
+      "section": "Bagian",
+      "party": "Supplier / Pelanggan",
+      "item": "Jenis ikan",
+      "size": "Size",
+      "mc": "MC",
+      "kg": "Kg",
+      "market": "Pasar",
+      "copiedFrom": "Disalin dari",
+      "mcDiff": "Selisih MC",
+      "kgDiff": "Selisih Kg",
+      "cause": "Penyebab",
+      "status": "Status",
+      "resolution": "Penyelesaian"
     }
   },
   "shell": {
@@ -456,5 +491,170 @@
       "Import dan export Excel",
       "Pemasukan, pengeluaran, dan laba per bulan"
     ]
+  },
+  "journal": {
+    "title": "Jurnal Harian",
+    "previousDay": "Hari sebelumnya",
+    "nextDay": "Hari berikutnya",
+    "import": "Import Excel",
+    "tabs": {
+      "PROCESS": "Proses",
+      "PACKING": "Packing",
+      "STOCK": "Sisa Stok",
+      "OUT": "Keluar"
+    },
+    "markets": {
+      "EXPORT": "Ekspor",
+      "LOCAL": "Lokal"
+    },
+    "table": {
+      "supplier": "Supplier",
+      "customer": "Pelanggan",
+      "item": "Jenis Ikan",
+      "size": "Size",
+      "mc": "MC",
+      "kg": "Kg",
+      "subtotal": "Subtotal"
+    },
+    "total": "Total",
+    "rows": "{count} baris",
+    "noRows": "Tidak ada baris",
+    "empty": "Belum ada jurnal untuk tanggal ini",
+    "emptyHint": "Import Excel staf, atau tambah baris manual di tiap tab.",
+    "daysWithData": "Tanggal yang sudah ada jurnal",
+    "importDialog": {
+      "title": "Import Jurnal Harian",
+      "description": "Unggah file Excel staf dengan satu sheet per hari (mis. \"6 OKT 26\"). Data Proses, Packing, dan Sisa Stok untuk tanggal di file menggantikan data yang ada; Barang Keluar tidak disentuh.",
+      "file": "File Excel (.xlsx)",
+      "preview": "Pratinjau",
+      "previewing": "Memeriksa...",
+      "back": "Kembali",
+      "save": "Simpan {count} baris",
+      "saving": "Menyimpan...",
+      "cancel": "Batal",
+      "errorsTitle": "File berisi data yang tidak valid, tidak ada yang diimport:",
+      "sheetRow": "Sheet {sheet}, baris {row}",
+      "daysTitle": "{count} tanggal di file",
+      "replaces": "Mengganti data",
+      "new": "Baru",
+      "suppliersTitle": "Ekspor / Lokal per supplier",
+      "suppliersHint": "Pilih sekali per supplier, berlaku untuk semua barisnya. Buka supplier untuk mengubah baris tertentu.",
+      "missing": "{count} supplier belum dipilih",
+      "choose": "Pilih…",
+      "newSupplier": "baru",
+      "rowsChanged": "{count} baris diubah",
+      "saved": "{count} baris jurnal diimport"
+    }
+  },
+  "journalManual": {
+    "addRows": "Tambah baris",
+    "noRows": "Belum ada baris di bagian ini",
+    "copyStock": "Salin dari tanggal sebelumnya",
+    "copying": "Menyalin...",
+    "copied": "{count} baris sisa stok disalin dari {date}",
+    "openDiscrepancies": "{count} selisih belum selesai",
+    "actions": {
+      "menu": "Aksi",
+      "edit": "Edit",
+      "delete": "Hapus",
+      "recordDiscrepancy": "Catat selisih"
+    },
+    "form": {
+      "addTitle": "Tambah {section} — {date}",
+      "editTitle": "Edit baris",
+      "market": "Pasar",
+      "addRow": "Baris",
+      "removeRow": "Hapus baris",
+      "total": "Total: {mc} MC · {kg} kg",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan...",
+      "required": "Wajib diisi",
+      "invalidNumber": "Harus angka ≥ 0, maksimal 2 desimal"
+    },
+    "deleteDialog": {
+      "title": "Hapus baris ini?",
+      "description": "{party} · {item} {size} · {kg} kg akan dihapus dari jurnal {date}. Tindakan ini tidak bisa dibatalkan.",
+      "confirm": "Hapus",
+      "deleting": "Menghapus..."
+    },
+    "saved": "Jurnal disimpan",
+    "deleted": "Baris dihapus"
+  },
+  "discrepancy": {
+    "title": "Catatan Selisih",
+    "description": "Selisih antara hitungan stok dan catatan, diisi staf. Hanya catatan — angka jurnal tidak diubah.",
+    "add": "Catat Selisih",
+    "filters": {
+      "OPEN": "Belum selesai",
+      "RESOLVED": "Selesai",
+      "ALL": "Semua"
+    },
+    "table": {
+      "date": "Tanggal",
+      "goods": "Barang",
+      "mc": "MC",
+      "kg": "Kg",
+      "cause": "Penyebab",
+      "note": "Keterangan",
+      "status": "Status"
+    },
+    "causes": {
+      "MISCOUNT": "Salah hitung",
+      "DAMAGE": "Rusak / susut",
+      "OUT_UNRECORDED": "Keluar belum dicatat",
+      "OTHER": "Lainnya"
+    },
+    "statuses": {
+      "OPEN": "Belum selesai",
+      "RESOLVED": "Selesai"
+    },
+    "empty": "Belum ada catatan selisih",
+    "emptyOpen": "Tidak ada selisih yang belum selesai",
+    "resolvedNote": "Penyelesaian: {note}",
+    "actions": {
+      "menu": "Aksi",
+      "resolve": "Tandai selesai",
+      "reopen": "Buka lagi",
+      "edit": "Edit",
+      "delete": "Hapus"
+    },
+    "form": {
+      "title": "Catat Selisih Stok",
+      "editTitle": "Edit Selisih Stok",
+      "date": "Tanggal",
+      "party": "Pemilik / Supplier",
+      "item": "Jenis ikan",
+      "size": "Size",
+      "mcDiff": "Selisih MC",
+      "kgDiff": "Selisih Kg",
+      "diffHint": "Positif (+) = lebih banyak dari catatan, negatif (−) = kurang",
+      "cause": "Penyebab",
+      "note": "Keterangan",
+      "notePlaceholder": "mis. barang keluar 22 Okt belum masuk laporan",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan...",
+      "required": "Wajib diisi",
+      "diffRequired": "Isi selisih MC atau Kg",
+      "invalidNumber": "Harus angka, maksimal 2 desimal"
+    },
+    "resolveDialog": {
+      "title": "Tandai selesai",
+      "resolution": "Cara penyelesaian",
+      "placeholder": "mis. laporan barang keluar 22 Okt sudah diinput",
+      "confirm": "Tandai selesai"
+    },
+    "deleteDialog": {
+      "title": "Hapus catatan selisih ini?",
+      "description": "Catatan untuk {goods} pada {date} akan dihapus. Tindakan ini tidak bisa dibatalkan.",
+      "confirm": "Hapus",
+      "deleting": "Menghapus..."
+    },
+    "created": "Selisih dicatat",
+    "updated": "Catatan selisih diperbarui",
+    "deleted": "Catatan selisih dihapus",
+    "attention": "{count} selisih stok belum selesai",
+    "openList": "Buka daftar"
   }
 }

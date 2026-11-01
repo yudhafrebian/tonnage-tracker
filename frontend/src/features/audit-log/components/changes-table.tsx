@@ -7,19 +7,28 @@ import type { AuditLogItem } from "../types/types";
 
 // Rincian perubahan satu baris log: Kolom | Sebelum | Sesudah.
 const ChangesTable = ({ item }: { item: AuditLogItem }) => {
-  const t = useI18n().dict.auditLog;
+  const { dict } = useI18n();
+  const t = dict.auditLog;
   const fmt = useFormatter();
   const changes = diffSnapshots(item.before, item.after);
   const showBefore = item.before !== null;
   const showAfter = item.after !== null;
+  // Nilai kode (EXPORT, OUT, DAMAGE, ...) ditampilkan dengan label bahasa aktif.
+  const codes: Record<string, Record<string, string>> = {
+    market: dict.journal.markets,
+    section: dict.journal.tabs,
+    cause: dict.discrepancy.causes,
+    status: dict.discrepancy.statuses,
+  };
 
   const label = (path: string) => (t.fields as Record<string, string>)[path] ?? path;
   const value = (path: string, v: unknown) => {
     if (v === null || v === undefined || v === "") return "—";
+    if (typeof v === "string" && codes[path]?.[v]) return codes[path][v];
     if (typeof v === "number") {
       return path === "amount" || path === "pricePerKg" ? fmt.rupiah(v) : fmt.kg(v);
     }
-    if ((path === "date" || path === "effectiveFrom") && typeof v === "string") return fmt.date(v);
+    if (["date", "effectiveFrom", "from", "to"].includes(path) && typeof v === "string") return fmt.date(v);
     return String(v);
   };
 

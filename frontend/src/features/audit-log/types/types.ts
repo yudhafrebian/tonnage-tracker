@@ -1,6 +1,6 @@
 // Sesuai respons GET /audit-logs (backend audit-log.service.ts).
 
-export const AUDIT_ENTITIES = ["DailyRecap", "Expense", "PriceRate"] as const;
+export const AUDIT_ENTITIES = ["DailyRecap", "Expense", "PriceRate", "Journal", "JournalEntry", "StockDiscrepancy"] as const;
 export type AuditEntity = (typeof AUDIT_ENTITIES)[number];
 
 export const AUDIT_ACTIONS = ["create", "update", "delete", "import"] as const;

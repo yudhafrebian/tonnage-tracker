@@ -2,9 +2,11 @@ import type { Dictionary } from "@/shared/i18n/types";
 import { Permission } from "@/shared/lib/permissions";
 import {
   Book,
+  ClipboardListIcon,
   DollarSign,
   HistoryIcon,
   LayoutDashboard,
+  NotebookPenIcon,
   Settings,
   TrendingDown,
 } from "lucide-react";
@@ -20,6 +22,8 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { key: "dashboard", href: "/dashboard", icon: <LayoutDashboard /> },
   { key: "recap", href: "/dashboard/recap", icon: <Book />, permission: "recap:read" },
+  { key: "journal", href: "/dashboard/journal", icon: <NotebookPenIcon />, permission: "journal:read" },
+  { key: "discrepancies", href: "/dashboard/discrepancies", icon: <ClipboardListIcon />, permission: "journal:read" },
   { key: "expense", href: "/dashboard/expense", icon: <TrendingDown />, permission: "expense:read" },
   { key: "priceRate", href: "/dashboard/price-rate", icon: <DollarSign />, permission: "price-rate:read" },
   { key: "auditLog", href: "/dashboard/audit-log", icon: <HistoryIcon />, permission: "audit-log:read" },

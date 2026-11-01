@@ -13,6 +13,9 @@ export const PERMISSIONS = {
   "expense:write": STAFF,
   "price-rate:read": STAFF,
   "price-rate:write": OWNER,
+  // Jurnal harian (rincian per supplier). Semua role boleh melihat, seperti rekap.
+  "journal:read": ALL,
+  "journal:write": STAFF,
   "audit-log:read": OWNER,
 } as const satisfies Record<string, readonly Role[]>;
 

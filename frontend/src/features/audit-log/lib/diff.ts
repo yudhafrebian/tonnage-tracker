@@ -23,6 +23,9 @@ const ORDER = [
   "packing.export", "packing.local", "packing.total",
   "stock.export", "stock.local", "stock.total",
   "note", "method", "sheet",
+  "from", "to", "days", "rows", "replacedRows", "sheets",
+  "section", "party", "item", "size", "mc", "kg", "market", "copiedFrom",
+  "mcDiff", "kgDiff", "cause", "status", "resolution",
 ];
 const rank = (path: string) => {
   const i = ORDER.indexOf(path);
@@ -46,6 +49,8 @@ export function diffSnapshots(before: AuditSnapshot | null, after: AuditSnapshot
 
 // Label singkat baris log, mis. tanggal rekap atau "Solar · 21 Okt".
 export const snapshotSubject = (s: AuditSnapshot | null) => ({
-  date: (s?.date ?? s?.effectiveFrom) as string | undefined,
-  category: s?.category as string | undefined,
+  // Import jurnal mencatat rentang tanggal (from/to), bukan satu tanggal.
+  date: (s?.date ?? s?.effectiveFrom ?? s?.from) as string | undefined,
+  // Baris jurnal dan selisih stok: nama supplier/pelanggan.
+  category: (s?.category ?? s?.party) as string | undefined,
 });

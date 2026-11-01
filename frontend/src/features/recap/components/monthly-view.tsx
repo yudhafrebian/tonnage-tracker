@@ -12,22 +12,24 @@ import { makeColumns } from "./table/column";
 import { RecapTable } from "./table/data-table";
 import { FINANCE_COLUMN_IDS } from "./table/money";
 import type { RecapTableMeta } from "./table/data-table-features";
+import type { RecapGrouping } from "../types/types";
 import { usePermission } from "@/features/auth";
 
 interface MonthlyViewProps {
   month: string;
+  grouping: RecapGrouping;
   // Kolom Aksi -> buka dialog tambah/edit/hapus untuk tanggal itu.
   onAction: NonNullable<RecapTableMeta["onAction"]>;
 }
 
 // Tab Bulanan: query bulanan hanya berjalan saat tab ini tampil.
-const MonthlyView = ({ month, onAction }: MonthlyViewProps) => {
+const MonthlyView = ({ month, grouping, onAction }: MonthlyViewProps) => {
   const { dict } = useI18n();
   const { data, isPending, error } = useMonthlyRecapQuery(month);
   const { allowed: canWrite } = usePermission("recap:write");
   const fmt = useFormatter();
-  // Dibuat ulang hanya saat bahasa berganti, bukan setiap render.
-  const columns = useMemo(() => makeColumns(dict.recap, fmt), [dict, fmt]);
+  // Dibuat ulang hanya saat bahasa atau susunan berganti, bukan setiap render.
+  const columns = useMemo(() => makeColumns(dict.recap, fmt, grouping), [dict, fmt, grouping]);
 
   if (isPending) {
     return (

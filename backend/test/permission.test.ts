@@ -13,6 +13,8 @@ const EXPECTED: Record<Permission, Role[]> = {
   "expense:write": STAFF,
   "price-rate:read": STAFF,
   "price-rate:write": OWNER,
+  "journal:read": ALL,
+  "journal:write": STAFF,
   "audit-log:read": OWNER,
 };
 
@@ -27,9 +29,9 @@ describe("matriks izin", () => {
     });
   });
 
-  it("Viewer hanya bisa membaca rekap", () => {
+  it("Viewer hanya bisa membaca rekap dan jurnal", () => {
     for (const p of Object.keys(PERMISSIONS) as Permission[]) {
-      expect(can("VIEWER", p)).toBe(p === "recap:read");
+      expect(can("VIEWER", p)).toBe(p === "recap:read" || p === "journal:read");
     }
   });
 

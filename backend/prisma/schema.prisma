@@ -27,8 +27,9 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  auditLogs AuditLog[]
-  expenses  Expense[]
+  auditLogs     AuditLog[]
+  expenses      Expense[]
+  discrepancies StockDiscrepancy[]
 }
 
 // Satu baris per tanggal, disalin dari TOTAL di PDF laporan harian staf.
@@ -80,12 +81,91 @@ model Expense {
   @@index([category])
 }
 
+// Bagian jurnal harian. OUT = barang keluar (diisi manual, tahap berikutnya).
+enum JournalSection {
+  PROCESS
+  PACKING
+  STOCK
+  OUT
+}
+
+enum Market {
+  EXPORT
+  LOCAL
+}
+
+// Satu baris jurnal harian, disalin apa adanya dari laporan staf (tanpa perhitungan
+// atau penyeragaman nama). Label pasar disimpan per baris supaya data lama tidak berubah
+// kalau label supplier diganti belakangan.
+model JournalEntry {
+  id       String         @id @default(cuid())
+  date     DateTime       @db.Date
+  section  JournalSection
+  party    String // supplier (proses/packing/sisa) atau pelanggan (keluar), teks bebas
+  item     String // jenis ikan
+  size     String?
+  mc       Decimal?       @db.Decimal(12, 2)
+  kg       Decimal        @db.Decimal(12, 2)
+  market   Market
+  position Int // urutan baris seperti di laporan
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date, section])
+}
+
+enum DiscrepancyCause {
+  MISCOUNT // salah hitung
+  DAMAGE // rusak / susut
+  OUT_UNRECORDED // barang keluar belum dicatat
+  OTHER
+}
+
+enum DiscrepancyStatus {
+  OPEN
+  RESOLVED
+}
+
+// Catatan selisih stok yang ditemukan staf, diisi manual. Hanya catatan: tidak mengubah angka jurnal.
+// Barang diketik bebas (pemilik, jenis, size), sama seperti laporan staf.
+model StockDiscrepancy {
+  id         String            @id @default(cuid())
+  date       DateTime          @db.Date
+  party      String
+  item       String
+  size       String?
+  mcDiff     Decimal?          @db.Decimal(12, 2) // + lebih banyak dari catatan, - kurang
+  kgDiff     Decimal?          @db.Decimal(12, 2)
+  cause      DiscrepancyCause
+  note       String?
+  status     DiscrepancyStatus @default(OPEN)
+  resolution String? // keterangan penyelesaian saat ditandai selesai
+  resolvedAt DateTime?
+
+  createdById String   @db.Uuid
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date])
+  @@index([status])
+}
+
+// Label pasar terakhir per nama supplier, untuk mengisi otomatis pratinjau import berikutnya.
+// Kunci = nama persis seperti di laporan (dirapikan spasinya saja).
+model SupplierMarket {
+  name      String   @id
+  market    Market
+  updatedAt DateTime @updatedAt
+}
+
 model AuditLog {
   id        String   @id @default(cuid())
   userId    String   @db.Uuid
   user      User     @relation(fields: [userId], references: [id])
   action    String // create | update | delete | import
-  entity    String // DailyRecap | PriceRate | Expense
+  entity    String // DailyRecap | PriceRate | Expense | Journal | JournalEntry | StockDiscrepancy
   entityId  String?
   before    Json?
   after     Json?

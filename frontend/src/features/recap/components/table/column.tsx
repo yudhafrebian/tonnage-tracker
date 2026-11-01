@@ -1,11 +1,11 @@
 "use client";
 import { createColumnHelper } from "@tanstack/react-table";
 import { AlertTriangleIcon } from "lucide-react";
-import type { RecapDay } from "@/features/recap/types/types";
+import type { RecapDay, RecapGrouping } from "@/features/recap/types/types";
 import type { Dictionary } from "@/shared/i18n/types";
 import type { Formatter } from "@/shared/i18n/use-formatter";
 import { DataTableFeatures } from "./data-table-features";
-import { makeSectionGroup } from "./section-group";
+import { makeKgGroups } from "./section-group";
 import { makeMoney, Profit } from "./money";
 import RowActions from "./row-actions";
 import NoteCell from "./note-cell";
@@ -33,10 +33,10 @@ const dailyProfit = (row: RecapDay): number | null => {
 };
 
 // Fungsi (bukan konstanta) supaya teks header & format angka ikut bahasa aktif.
-// Panggil dengan useMemo di komponen: useMemo(() => makeColumns(dict.recap, fmt), [dict, fmt]).
-export const makeColumns = (t: Dictionary["recap"], fmt: Formatter) => {
+// Panggil dengan useMemo di komponen: useMemo(() => makeColumns(dict.recap, fmt, grouping), [dict, fmt, grouping]).
+export const makeColumns = (t: Dictionary["recap"], fmt: Formatter, grouping: RecapGrouping) => {
   // recap bisa null (tanggal belum diisi) -> sel tampil "—".
-  const sectionGroup = makeSectionGroup<RecapDay>((row, section) => row.recap?.[section], t, fmt);
+  const kgGroups = makeKgGroups<RecapDay>((row, section) => row.recap?.[section], t, fmt, grouping);
   const money = makeMoney(fmt);
   const unpriced = <Unpriced title={t.table.unpriced} />;
 
@@ -47,9 +47,7 @@ export const makeColumns = (t: Dictionary["recap"], fmt: Formatter) => {
       cell: (info) => Number(info.getValue().slice(8, 10)),
       footer: t.table.total,
     }),
-    sectionGroup("process"),
-    sectionGroup("packing"),
-    sectionGroup("stock"),
+    ...kgGroups,
     // Hanya terlihat untuk OWNER/ADMIN (lihat FINANCE_COLUMN_IDS & hiddenColumns).
     columnHelper.group({
       id: "finance",

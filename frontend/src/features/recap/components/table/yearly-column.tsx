@@ -1,14 +1,14 @@
 "use client";
 import { createColumnHelper } from "@tanstack/react-table";
 import { AlertTriangleIcon } from "lucide-react";
-import type { MonthSummary } from "@/features/recap/types/types";
+import type { MonthSummary, RecapGrouping } from "@/features/recap/types/types";
 import { useI18n } from "@/shared/i18n/i18n-provider";
 import { intlTag } from "@/shared/i18n/config";
 import type { Dictionary } from "@/shared/i18n/types";
 import type { Formatter } from "@/shared/i18n/use-formatter";
 import { format as fill } from "@/shared/i18n/format";
 import { DataTableFeatures } from "./data-table-features";
-import { makeSectionGroup } from "./section-group";
+import { makeKgGroups } from "./section-group";
 import { makeMoney, Profit } from "./money";
 
 const columnHelper = createColumnHelper<DataTableFeatures, MonthSummary>();
@@ -22,9 +22,9 @@ const MonthName = ({ month }: { month: string }) => {
 };
 
 // Fungsi (bukan konstanta) supaya teks header & format angka ikut bahasa aktif.
-export const makeYearlyColumns = (t: Dictionary["recap"], fmt: Formatter) => {
+export const makeYearlyColumns = (t: Dictionary["recap"], fmt: Formatter, grouping: RecapGrouping) => {
   // stock null = bulan tanpa rekap -> "—".
-  const sectionGroup = makeSectionGroup<MonthSummary>((row, section) => row[section], t, fmt);
+  const kgGroups = makeKgGroups<MonthSummary>((row, section) => row[section], t, fmt, grouping);
   const money = makeMoney(fmt);
 
   return columnHelper.columns([
@@ -33,9 +33,7 @@ export const makeYearlyColumns = (t: Dictionary["recap"], fmt: Formatter) => {
       cell: (info) => <MonthName month={info.getValue()} />,
       footer: t.table.total,
     }),
-    sectionGroup("process"),
-    sectionGroup("packing"),
-    sectionGroup("stock"),
+    ...kgGroups,
     columnHelper.accessor("recordedDays", {
       header: t.table.recordedDays,
       cell: (info) => {

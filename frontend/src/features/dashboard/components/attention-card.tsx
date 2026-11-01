@@ -7,13 +7,16 @@ import { useI18n } from "@/shared/i18n/i18n-provider";
 import { useFormatter } from "@/shared/i18n/use-formatter";
 import { AlertTriangleIcon, BellIcon, CheckCircle2Icon, ClockIcon } from "lucide-react";
 import Link from "next/link";
+import { useDiscrepanciesQuery } from "@/features/discrepancy";
 import type { DashboardSummary } from "../types/types";
 
 // Status kelengkapan input bulan ini, dengan jalan pintas ke halaman Rekap.
 const AttentionCard = ({ data }: { data: DashboardSummary }) => {
-  const t = useI18n().dict.dashboard;
+  const { dict } = useI18n();
+  const t = dict.dashboard;
   const fmt = useFormatter();
   const { current, asOf } = data;
+  const openDiscrepancies = useDiscrepanciesQuery("OPEN").data?.openCount ?? 0;
 
   return (
     <Card className="h-fit">
@@ -43,6 +46,15 @@ const AttentionCard = ({ data }: { data: DashboardSummary }) => {
           <p className="text-muted-foreground">
             {fill(t.recordedDays, { count: current.recordedDays })}
           </p>
+        )}
+        {openDiscrepancies > 0 && (
+          <Link
+            href="/dashboard/discrepancies"
+            className="flex items-start gap-2 text-amber-700 hover:underline dark:text-amber-400"
+          >
+            <AlertTriangleIcon className="mt-0.5 size-4 shrink-0" />
+            {fill(dict.discrepancy.attention, { count: openDiscrepancies })}
+          </Link>
         )}
         <Link
           href="/dashboard/recap"

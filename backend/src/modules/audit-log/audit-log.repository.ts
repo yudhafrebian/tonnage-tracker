@@ -2,7 +2,7 @@ import { prisma } from "../../config/prisma";
 import { Prisma } from "../../generated/prisma/client";
 
 export type AuditAction = "create" | "update" | "delete" | "import";
-export type AuditEntity = "DailyRecap" | "PriceRate" | "Expense";
+export type AuditEntity = "DailyRecap" | "PriceRate" | "Expense" | "Journal" | "JournalEntry" | "StockDiscrepancy";
 
 export type AuditEntry = {
   userId: string;

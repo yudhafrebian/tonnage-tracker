@@ -43,7 +43,9 @@
     "expense": "支出",
     "priceRate": "Price",
     "settings": "设置",
-    "auditLog": "审计日志"
+    "auditLog": "审计日志",
+    "journal": "每日日志",
+    "discrepancies": "库存差异"
   },
   "roles": {
     "OWNER": "所有者",
@@ -72,7 +74,9 @@
     "import_invalid": "文件包含无效数据，未导入任何内容",
     "too_many_requests": "尝试次数过多，请稍后再试",
     "internal_error": "服务器错误，请重试",
-    "wrong_password": "当前密码错误"
+    "wrong_password": "当前密码错误",
+    "stock_exists": "该日期已有库存数据",
+    "no_previous_stock": "没有之前的库存可复制"
   },
   "fieldErrors": {
     "only_xlsx": "仅允许 .xlsx 文件",
@@ -97,7 +101,11 @@
     "not_a_number": "{cell}：\"{value}\" 不是数字",
     "excel_error": "{cell}：Excel 错误 {error}",
     "negative_value": "{cell}：负值 {value}",
-    "value_too_large": "{cell}：数值过大"
+    "value_too_large": "{cell}：数值过大",
+    "no_day_sheets": "未找到每日工作表（名称如“6 OKT 26”）",
+    "duplicate_date": "日期 {date} 出现在多个工作表中",
+    "block_missing": "未找到表格“{block}”",
+    "kg_missing": "{cell}：KG 为空"
   },
   "language": {
     "id": "Bahasa Indonesia",
@@ -203,6 +211,11 @@
         "unchanged": "未变"
       },
       "status": "状态"
+    },
+    "grouping": {
+      "label": "分组",
+      "section": "按部分",
+      "market": "按市场"
     }
   },
   "expense": {
@@ -389,7 +402,10 @@
     "entities": {
       "DailyRecap": "记录",
       "Expense": "支出",
-      "PriceRate": "价格"
+      "PriceRate": "价格",
+      "Journal": "每日日志",
+      "JournalEntry": "日志行",
+      "StockDiscrepancy": "库存差异"
     },
     "actionLabels": {
       "create": "新增",
@@ -431,7 +447,26 @@
       "packing.local": "包装本地",
       "stock.total": "库存合计",
       "stock.export": "库存出口",
-      "stock.local": "库存本地"
+      "stock.local": "库存本地",
+      "from": "从",
+      "to": "至",
+      "days": "天数",
+      "rows": "已保存行数",
+      "replacedRows": "已替换行数",
+      "sheets": "工作表",
+      "section": "部分",
+      "party": "供应商 / 客户",
+      "item": "鱼类",
+      "size": "规格",
+      "mc": "箱",
+      "kg": "公斤",
+      "market": "市场",
+      "copiedFrom": "复制自",
+      "mcDiff": "箱数差异",
+      "kgDiff": "公斤差异",
+      "cause": "原因",
+      "status": "状态",
+      "resolution": "处理结果"
     }
   },
   "shell": {
@@ -456,5 +491,170 @@
       "Excel 导入与导出",
       "每月收入、支出与利润"
     ]
+  },
+  "journal": {
+    "title": "每日日志",
+    "previousDay": "前一天",
+    "nextDay": "后一天",
+    "import": "导入 Excel",
+    "tabs": {
+      "PROCESS": "加工",
+      "PACKING": "包装",
+      "STOCK": "库存",
+      "OUT": "出库"
+    },
+    "markets": {
+      "EXPORT": "出口",
+      "LOCAL": "本地"
+    },
+    "table": {
+      "supplier": "供应商",
+      "customer": "客户",
+      "item": "鱼类",
+      "size": "规格",
+      "mc": "箱",
+      "kg": "公斤",
+      "subtotal": "小计"
+    },
+    "total": "合计",
+    "rows": "{count} 行",
+    "noRows": "无数据",
+    "empty": "该日期尚无日志",
+    "emptyHint": "导入员工 Excel，或在各标签中手动添加行。",
+    "daysWithData": "已有日志的日期",
+    "importDialog": {
+      "title": "导入每日日志",
+      "description": "上传员工的 Excel 文件，每天一个工作表（如“6 OKT 26”）。文件中日期的加工、包装和库存数据将替换现有数据；出库数据不受影响。",
+      "file": "Excel 文件 (.xlsx)",
+      "preview": "预览",
+      "previewing": "检查中...",
+      "back": "返回",
+      "save": "保存 {count} 行",
+      "saving": "保存中...",
+      "cancel": "取消",
+      "errorsTitle": "文件包含无效数据，未导入任何内容：",
+      "sheetRow": "工作表 {sheet}，第 {row} 行",
+      "daysTitle": "文件中有 {count} 个日期",
+      "replaces": "替换现有",
+      "new": "新",
+      "suppliersTitle": "按供应商选择出口 / 本地",
+      "suppliersHint": "每个供应商选择一次，适用于其所有行。展开供应商可修改单独的行。",
+      "missing": "{count} 个供应商尚未选择",
+      "choose": "选择…",
+      "newSupplier": "新",
+      "rowsChanged": "已修改 {count} 行",
+      "saved": "已导入 {count} 行日志"
+    }
+  },
+  "journalManual": {
+    "addRows": "添加行",
+    "noRows": "此部分尚无数据",
+    "copyStock": "从前一日期复制",
+    "copying": "复制中...",
+    "copied": "已从 {date} 复制 {count} 行库存",
+    "openDiscrepancies": "{count} 个未处理差异",
+    "actions": {
+      "menu": "操作",
+      "edit": "编辑",
+      "delete": "删除",
+      "recordDiscrepancy": "记录差异"
+    },
+    "form": {
+      "addTitle": "添加{section} — {date}",
+      "editTitle": "编辑行",
+      "market": "市场",
+      "addRow": "行",
+      "removeRow": "删除行",
+      "total": "合计：{mc} 箱 · {kg} 公斤",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "required": "必填",
+      "invalidNumber": "必须是 ≥ 0 的数字，最多 2 位小数"
+    },
+    "deleteDialog": {
+      "title": "删除这一行？",
+      "description": "{date} 日志中的 {party} · {item} {size} · {kg} 公斤将被删除，且无法撤销。",
+      "confirm": "删除",
+      "deleting": "删除中..."
+    },
+    "saved": "日志已保存",
+    "deleted": "已删除"
+  },
+  "discrepancy": {
+    "title": "库存差异",
+    "description": "员工记录的盘点与记录之间的差异。仅为记录——不会修改日志数字。",
+    "add": "记录差异",
+    "filters": {
+      "OPEN": "未处理",
+      "RESOLVED": "已处理",
+      "ALL": "全部"
+    },
+    "table": {
+      "date": "日期",
+      "goods": "货物",
+      "mc": "箱",
+      "kg": "公斤",
+      "cause": "原因",
+      "note": "说明",
+      "status": "状态"
+    },
+    "causes": {
+      "MISCOUNT": "计数错误",
+      "DAMAGE": "损坏 / 损耗",
+      "OUT_UNRECORDED": "出库未记录",
+      "OTHER": "其他"
+    },
+    "statuses": {
+      "OPEN": "未处理",
+      "RESOLVED": "已处理"
+    },
+    "empty": "尚无差异记录",
+    "emptyOpen": "没有未处理的差异",
+    "resolvedNote": "处理结果：{note}",
+    "actions": {
+      "menu": "操作",
+      "resolve": "标记为已处理",
+      "reopen": "重新打开",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "form": {
+      "title": "记录库存差异",
+      "editTitle": "编辑库存差异",
+      "date": "日期",
+      "party": "货主 / 供应商",
+      "item": "鱼类",
+      "size": "规格",
+      "mcDiff": "箱数差异",
+      "kgDiff": "公斤差异",
+      "diffHint": "正数 (+) = 多于记录，负数 (−) = 少于记录",
+      "cause": "原因",
+      "note": "说明",
+      "notePlaceholder": "例如：10 月 22 日出库尚未录入报告",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "required": "必填",
+      "diffRequired": "请填写箱数或公斤差异",
+      "invalidNumber": "必须是数字，最多 2 位小数"
+    },
+    "resolveDialog": {
+      "title": "标记为已处理",
+      "resolution": "处理方式",
+      "placeholder": "例如：10 月 22 日出库报告已录入",
+      "confirm": "标记为已处理"
+    },
+    "deleteDialog": {
+      "title": "删除此差异记录？",
+      "description": "{date} 的 {goods} 记录将被删除，且无法撤销。",
+      "confirm": "删除",
+      "deleting": "删除中..."
+    },
+    "created": "差异已记录",
+    "updated": "差异记录已更新",
+    "deleted": "差异记录已删除",
+    "attention": "{count} 个库存差异未处理",
+    "openList": "打开列表"
   }
 }

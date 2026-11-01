@@ -11,6 +11,8 @@ export const PERMISSIONS = {
   "expense:write": STAFF,
   "price-rate:read": STAFF,
   "price-rate:write": OWNER,
+  "journal:read": ALL,
+  "journal:write": STAFF,
   "audit-log:read": OWNER,
 } as const satisfies Record<string, readonly Role[]>;
 

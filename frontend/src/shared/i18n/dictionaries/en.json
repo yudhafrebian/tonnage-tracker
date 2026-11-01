@@ -43,7 +43,9 @@
     "expense": "Expenses",
     "priceRate": "Price Rate",
     "settings": "Settings",
-    "auditLog": "Audit Log"
+    "auditLog": "Audit Log",
+    "journal": "Daily Journal",
+    "discrepancies": "Stock Discrepancies"
   },
   "roles": {
     "OWNER": "Owner",
@@ -72,7 +74,9 @@
     "import_invalid": "File contains invalid data, nothing was imported",
     "too_many_requests": "Too many attempts, please try again later",
     "internal_error": "Server error, please try again",
-    "wrong_password": "Current password is wrong"
+    "wrong_password": "Current password is wrong",
+    "stock_exists": "This date already has stock rows",
+    "no_previous_stock": "There is no earlier stock to copy"
   },
   "fieldErrors": {
     "only_xlsx": "Only .xlsx files are allowed",
@@ -97,7 +101,11 @@
     "not_a_number": "{cell}: \"{value}\" is not a number",
     "excel_error": "{cell}: Excel error {error}",
     "negative_value": "{cell}: negative value {value}",
-    "value_too_large": "{cell}: value too large"
+    "value_too_large": "{cell}: value too large",
+    "no_day_sheets": "No daily sheet found (names like \"6 OKT 26\")",
+    "duplicate_date": "Date {date} appears in more than one sheet",
+    "block_missing": "Table \"{block}\" not found",
+    "kg_missing": "{cell}: KG is empty"
   },
   "language": {
     "id": "Bahasa Indonesia",
@@ -203,6 +211,11 @@
         "unchanged": "Unchanged"
       },
       "status": "Status"
+    },
+    "grouping": {
+      "label": "Group by",
+      "section": "By section",
+      "market": "By market"
     }
   },
   "expense": {
@@ -389,7 +402,10 @@
     "entities": {
       "DailyRecap": "Recap",
       "Expense": "Expense",
-      "PriceRate": "Price Rate"
+      "PriceRate": "Price Rate",
+      "Journal": "Daily Journal",
+      "JournalEntry": "Journal Row",
+      "StockDiscrepancy": "Stock Discrepancy"
     },
     "actionLabels": {
       "create": "Created",
@@ -431,7 +447,26 @@
       "packing.local": "Packing local",
       "stock.total": "Stock total",
       "stock.export": "Stock export",
-      "stock.local": "Stock local"
+      "stock.local": "Stock local",
+      "from": "From",
+      "to": "To",
+      "days": "Days",
+      "rows": "Rows saved",
+      "replacedRows": "Rows replaced",
+      "sheets": "Sheets",
+      "section": "Section",
+      "party": "Supplier / Customer",
+      "item": "Fish type",
+      "size": "Size",
+      "mc": "MC",
+      "kg": "Kg",
+      "market": "Market",
+      "copiedFrom": "Copied from",
+      "mcDiff": "MC difference",
+      "kgDiff": "Kg difference",
+      "cause": "Cause",
+      "status": "Status",
+      "resolution": "Resolution"
     }
   },
   "shell": {
@@ -456,5 +491,170 @@
       "Excel import and export",
       "Income, expenses, and profit per month"
     ]
+  },
+  "journal": {
+    "title": "Daily Journal",
+    "previousDay": "Previous day",
+    "nextDay": "Next day",
+    "import": "Import Excel",
+    "tabs": {
+      "PROCESS": "Process",
+      "PACKING": "Packing",
+      "STOCK": "Stock",
+      "OUT": "Outgoing"
+    },
+    "markets": {
+      "EXPORT": "Export",
+      "LOCAL": "Local"
+    },
+    "table": {
+      "supplier": "Supplier",
+      "customer": "Customer",
+      "item": "Fish type",
+      "size": "Size",
+      "mc": "MC",
+      "kg": "Kg",
+      "subtotal": "Subtotal"
+    },
+    "total": "Total",
+    "rows": "{count} rows",
+    "noRows": "No rows",
+    "empty": "No journal for this date yet",
+    "emptyHint": "Import the staff Excel or add rows manually in each tab.",
+    "daysWithData": "Dates with a journal",
+    "importDialog": {
+      "title": "Import Daily Journal",
+      "description": "Upload the staff's Excel file with one sheet per day (e.g. \"6 OKT 26\"). Process, Packing and Stock for dates in the file replace existing data; Outgoing is not touched.",
+      "file": "Excel file (.xlsx)",
+      "preview": "Preview",
+      "previewing": "Checking...",
+      "back": "Back",
+      "save": "Save {count} rows",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "errorsTitle": "The file contains invalid data, nothing was imported:",
+      "sheetRow": "Sheet {sheet}, row {row}",
+      "daysTitle": "{count} dates in file",
+      "replaces": "Replaces existing",
+      "new": "New",
+      "suppliersTitle": "Export / Local per supplier",
+      "suppliersHint": "Choose once per supplier; it applies to all its rows. Open a supplier to change individual rows.",
+      "missing": "{count} suppliers not chosen yet",
+      "choose": "Choose…",
+      "newSupplier": "new",
+      "rowsChanged": "{count} rows changed",
+      "saved": "{count} journal rows imported"
+    }
+  },
+  "journalManual": {
+    "addRows": "Add rows",
+    "noRows": "No rows for this section yet",
+    "copyStock": "Copy from previous date",
+    "copying": "Copying...",
+    "copied": "{count} stock rows copied from {date}",
+    "openDiscrepancies": "{count} open discrepancies",
+    "actions": {
+      "menu": "Actions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "recordDiscrepancy": "Record discrepancy"
+    },
+    "form": {
+      "addTitle": "Add {section} — {date}",
+      "editTitle": "Edit row",
+      "market": "Market",
+      "addRow": "Row",
+      "removeRow": "Remove row",
+      "total": "Total: {mc} MC · {kg} kg",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "required": "Required",
+      "invalidNumber": "Must be a number ≥ 0 with at most 2 decimals"
+    },
+    "deleteDialog": {
+      "title": "Delete this row?",
+      "description": "{party} · {item} {size} · {kg} kg will be deleted from the journal of {date}. This cannot be undone.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "saved": "Journal saved",
+    "deleted": "Row deleted"
+  },
+  "discrepancy": {
+    "title": "Stock Discrepancies",
+    "description": "Differences between the stock count and the records, entered by staff. Notes only — journal figures are not changed.",
+    "add": "Record Discrepancy",
+    "filters": {
+      "OPEN": "Open",
+      "RESOLVED": "Resolved",
+      "ALL": "All"
+    },
+    "table": {
+      "date": "Date",
+      "goods": "Goods",
+      "mc": "MC",
+      "kg": "Kg",
+      "cause": "Cause",
+      "note": "Note",
+      "status": "Status"
+    },
+    "causes": {
+      "MISCOUNT": "Miscount",
+      "DAMAGE": "Damaged / shrinkage",
+      "OUT_UNRECORDED": "Outgoing not recorded",
+      "OTHER": "Other"
+    },
+    "statuses": {
+      "OPEN": "Open",
+      "RESOLVED": "Resolved"
+    },
+    "empty": "No discrepancies recorded",
+    "emptyOpen": "No open discrepancies",
+    "resolvedNote": "Resolution: {note}",
+    "actions": {
+      "menu": "Actions",
+      "resolve": "Mark resolved",
+      "reopen": "Reopen",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "title": "Record Stock Discrepancy",
+      "editTitle": "Edit Stock Discrepancy",
+      "date": "Date",
+      "party": "Owner / Supplier",
+      "item": "Fish type",
+      "size": "Size",
+      "mcDiff": "MC difference",
+      "kgDiff": "Kg difference",
+      "diffHint": "Positive (+) = more than recorded, negative (−) = less",
+      "cause": "Cause",
+      "note": "Note",
+      "notePlaceholder": "e.g. outgoing goods on 22 Oct not yet in the report",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "required": "Required",
+      "diffRequired": "Fill MC or Kg difference",
+      "invalidNumber": "Must be a number with at most 2 decimals"
+    },
+    "resolveDialog": {
+      "title": "Mark as resolved",
+      "resolution": "How it was resolved",
+      "placeholder": "e.g. outgoing report from 22 Oct has been entered",
+      "confirm": "Mark resolved"
+    },
+    "deleteDialog": {
+      "title": "Delete this discrepancy note?",
+      "description": "The note for {goods} on {date} will be deleted. This cannot be undone.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "created": "Discrepancy recorded",
+    "updated": "Discrepancy updated",
+    "deleted": "Discrepancy deleted",
+    "attention": "{count} stock discrepancies open",
+    "openList": "Open list"
   }
 }

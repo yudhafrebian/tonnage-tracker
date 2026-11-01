@@ -10,19 +10,21 @@ import RecapCardList from "./recap-card-list";
 import { RecapTable } from "./table/data-table";
 import { makeYearlyColumns } from "./table/yearly-column";
 import { FINANCE_COLUMN_IDS } from "./table/money";
+import type { RecapGrouping } from "../types/types";
 
 interface YearlyViewProps {
   year: string; // "2026"
+  grouping: RecapGrouping;
   // Klik baris bulan -> buka bulan itu di tab Bulanan.
   onPickMonth: (month: string) => void;
 }
 
 // Tab Tahunan: 12 baris ringkasan per bulan + total tahun dari backend.
-const YearlyView = ({ year, onPickMonth }: YearlyViewProps) => {
+const YearlyView = ({ year, grouping, onPickMonth }: YearlyViewProps) => {
   const { dict } = useI18n();
   const { data, isPending, error } = useYearlyRecapQuery(year);
   const fmt = useFormatter();
-  const yearlyColumns = useMemo(() => makeYearlyColumns(dict.recap, fmt), [dict, fmt]);
+  const yearlyColumns = useMemo(() => makeYearlyColumns(dict.recap, fmt, grouping), [dict, fmt, grouping]);
 
   if (isPending) {
     return (
