@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "regions": ["sin1"],
-  "ignoreCommand": "[ \"$VERCEL_ENV\" != \"production\" ]",
-  "buildCommand": "npm run db:deploy && npm run build"
+  "buildCommand": "echo \"VERCEL_ENV=$VERCEL_ENV\" && if [ \"$VERCEL_ENV\" = \"production\" ]; then npm run db:deploy; else echo \"Migrasi dilewati: bukan deploy production\"; fi && npm run build"
 }
